@@ -55,11 +55,7 @@
           <i class="fas fa-fw "></i>
           <span>User List</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="add_user.html">
-          <i class="fas fa-fw "></i>
-          <span>Add User Purchase</span></a>
-      </li>
+      
 
 
 
@@ -86,11 +82,29 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <!-----<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>----->
           </div>
           <div class="card-body">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">We will add user filter and filter for user whom deposit is pending, this page will be sorted by latest user add</h6>
+              
+              <div class="box-tools">
+                  <div class="input-group input-group-sm hidden-xs" style="width: 50%;">
+                    <input type="text" name="table_search" class="form-control pull-right mr-2" placeholder="Search By Name">
+
+                    
+                  
+                    <select name="filter" class="form-control pull-right" placeholder="">
+                      <option value="All">All</option>
+                      <option value="No">payment pending</option>
+                      <option value="yes">payment complete</option>
+                    </select>
+                    <div class="input-group-btn">
+                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    
+                  </div>
+                </div>
+
             </div>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -107,7 +121,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><a href="#">Tiger Nixon</a></td>
+                    <td><a href="user_network.html">Vijay Singh</a></td>
                     <td>Star</td>
                     <td >200</td>
                     <td><a href="#" >
@@ -132,7 +146,7 @@
                       </span></a>
                       </td>
                     <td>
-                      <a href="#" >
+                      <a href="create_purchase.html" >
                         <span class="icon fa-2x text-yellow-300">
                           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shop-window" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zm2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5z"/>
