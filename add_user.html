@@ -17,7 +17,27 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <style type="text/css">
+    select {
+    border-radius: 10rem !important;
+    font-size: small !important;
+}
+  </style>>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script>
+  $(document).ready (function(){
+              // $("#alert-success").hide();
+              $("#register").click(function() {
+                alert("herr");
+                 //  $("#alert-success").fadeTo(2000, 2000).slideUp(500, function(){
+                 // $("#alert-success").slideUp(500);
+                 //  });
+                 $("#alert-success").show(); // use slide down for animation
+                // setTimeout(function(){ $("#alert-success").fadeIn("slow"); }, 600);
+                return false
+              });
+   });
+</script>
 </head>
 
 <body id="page-top">
@@ -81,6 +101,132 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+          <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-2 d-none d-lg-block"></div>
+          <div class="col-lg-8">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+              </div>
+              <form class="user">
+                <div class="alert alert-success" style="display:none;" role="alert">
+  This is a success alert—check it out!
+</div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user required" id="exampleFirstName" placeholder="First Name">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user required" id="exampleInputEmail" placeholder="Email Address">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user required" id="exampleInputPassword" placeholder="Password">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user required" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  </div>
+                </div>
+                 <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user required" id="reference" placeholder="reference from">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user required" id="mobile" placeholder="mobile">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user required" id="address1" placeholder="address line 1">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" id="address2 " placeholder="address line 2">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user required" id="pin" placeholder="Postal code">
+                  </div>
+                  <div class="col-sm-6">
+                    <!-- <input type="text" class="form-control form-control-user" id="state " placeholder="State"> -->
+                    <select name="state" id="state" class="form-control required">
+                      <option value="">Select state</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                      <option value="Assam">Assam</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Chandigarh">Chandigarh</option>
+                      <option value="Chhattisgarh">Chhattisgarh</option>
+                      <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                      <option value="Daman and Diu">Daman and Diu</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Lakshadweep">Lakshadweep</option>
+                      <option value="Puducherry">Puducherry</option>
+                      <option value="Goa">Goa</option>
+                      <option value="Gujarat">Gujarat</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                      <option value="Jharkhand">Jharkhand</option>
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="Kerala">Kerala</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Manipur">Manipur</option>
+                      <option value="Meghalaya">Meghalaya</option>
+                      <option value="Mizoram">Mizoram</option>
+                      <option value="Nagaland">Nagaland</option>
+                      <option value="Odisha">Odisha</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Sikkim">Sikkim</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Telangana">Telangana</option>
+                      <option value="Tripura">Tripura</option>
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Uttarakhand">Uttarakhand</option>
+                      <option value="West Bengal">West Bengal</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <!-- <input type="text" class="form-control form-control-user" id="country" placeholder="Country"> -->
+                    <select name="country" id="country" class="form-control">
+                      <option value="India" selected="selected">India</option>
+                    </select>
+                  </div>
+                 
+                </div>
+                
+                <a href="#" class="btn btn-primary btn-user btn-block" id="register">
+                  Register Account
+                </a>
+                <hr>
+                
+                
+              </form>
+              <hr>
+              <!-- <div class="text-center">
+                <a class="small" href="forgot-password.html">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="login.html">Already have an account? Login!</a>
+              </div>
+            </div> -->
+          </div>
+          <div class="col-lg-2 d-none d-lg-block"></div>
+        </div>
+      </div>
+    </div>
 
         </div>
         <!-- /.container-fluid -->
@@ -129,7 +275,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -137,7 +283,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  
 </body>
 
 </html>
