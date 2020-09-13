@@ -1,0 +1,23 @@
+{
+    "generic_messages":{
+        "filed_empty":"This field cannot be empty",
+        "valid_url":"Please give a valid URL",
+        "int_validation":"Field should be integers",
+        "field_not_exists":"Field is required in request",
+        "Unauthorized":"Unauthorized Access",
+        "search":"please give search perameter",
+        "authentication_error": "Username or password is incorrect!",
+        "invalid_token": "Invalid Token",
+        "all_field":"Please give all the fields"
+    },
+    "status":{
+        "OK":200,
+        "validationError":422,
+        "dbError":423,
+        "Unauthorized":424,
+        "NOT_OK": 400,
+        "BadRequest": 401,
+        "ServerError": 500
+    }
+    
+}
