@@ -1,0 +1,216 @@
+Login
+URL http://18.219.99.165/mlm_api/login
+
+Method -> POST
+
+JSON Body: ->
+{
+    "username":"admin",
+    "password":"12345"
+}
+
+Response on success :
+{
+    "name": "Admin",
+    "jwt_toket": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYWRtaW58QWRtaW58NWY1ZDEzN2FjN2FiMjg1NTMzYjc1Mjc3fDE2Mi40NC4xNTEuMTEiLCJpYXQiOjE1OTk5ODUyNjQsImV4cCI6MTU5OTk4ODg2NH0.fb5uHhzyMODBo-KsiUfrwiSCYsHgrhqEUIyJCUE8aDM"
+}
+
+Response on fail :
+responce code 423 or 424
+{
+    "error": "user name and password is not correct"
+}
+
+
+Menu api
+
+http://18.219.99.165/mlm_api/api_list/menu
+
+Method -> POST
+
+Header: ->
+{
+    "token":""
+}
+
+
+JSON Body: ->
+
+
+Response:
+
+{
+    "User list": "usel_list.html",
+    "User add": "add_user.html"
+}
+
+
+User Add:
+URL : http://18.219.99.165/mlm_api/api_list/add_user
+Method -> POST
+
+Header: ->
+{
+    "token":""
+}
+
+
+JSON Body: ->
+{
+            "user_name":"admin-123",
+            "name":"Admin",
+            "role":"user",
+            "email_id":"1233@125123",
+            "password":"12345",
+            "ref_id":"5f5cffe66fd2143a91058047"
+}
+
+Response on success :
+{
+    "msg": "user added succefully"
+}
+
+Response on fail :
+responce code 423 or 424
+{
+    "error": {
+        "driver": true,
+        "name": "MongoError",
+        "index": 0,
+        "code": 11000,
+        "keyPattern": {
+            "user_name": 1
+        },
+        "keyValue": {
+            "user_name": "admin-124"
+        }
+    }
+}
+
+http://localhost:3000/admin_api_list/add_product
+
+Method -> POST
+
+
+Header: ->
+{
+    "token":""
+}
+
+JSON Body: ->
+
+{
+    "product_name":"Pigmentation Day Cream-3",
+    "quantity":"20 gm",    
+    "mrp":101.10,         
+    "dp":80
+}
+Response on success :
+{
+    "msg": "user added succefully"
+}
+
+Response on fail :
+responce code 423 or 424
+{
+    "error": {
+        "driver": true,
+        "name": "MongoError",
+        "index": 0,
+        "code": 11000,
+        "keyPattern": {
+            "user_name": 1
+        },
+        "keyValue": {
+            "user_name": "admin-124"
+        }
+    }
+}
+
+
+Purches list
+URL : http://localhost:3000/admin_api_list/buy_product
+
+Method -> POST
+
+
+Header: ->
+{
+    "token":""
+}
+
+JSON Body: ->
+
+{
+    "purcheser_id":"5f5cffe66fd2143a91058047",
+    "item":[
+        {
+            "product_id":"5f5e119c611edf3636e1e3da",
+            "quantity":2,
+            "amount":300
+        },
+        {
+            "product_id":"5f5e119c611edf3636e1e3da",
+            "quantity":2,
+            "amount":800
+        }
+    ],
+    "amount":1000
+}
+
+Response on success :
+{
+    "msg": "user added succefully"
+}
+
+Response on fail :
+responce code 423 or 424
+{
+    "error": {
+        "driver": true,
+        "name": "MongoError",
+        "index": 0,
+        "code": 11000,
+        "keyPattern": {
+            "user_name": 1
+        },
+        "keyValue": {
+            "user_name": "admin-124"
+        }
+    }
+}
+
+
+
+level -> 1 --> ObjectId("5f5cffe66fd2143a91058047")
+level->2
+ObjectId("5f5d084fb13926475bf410d3")
+ObjectId("5f5d10a97ae2e553d85bea4c")
+level->3 
+ObjectId("5f5d084fb13926475bf410d3")  --> ObjectId("5f5f9ec3177efc6765af53fa")
+ObjectId("5f5d084fb13926475bf410d3")  --> ObjectId("5f5f9f7a177efc6765af53fd")
+
+level-> 4
+ObjectId("5f5f9ec3177efc6765af53fa") --> 5f5f9ff4177efc6765af53ff
+ObjectId("5f5f9ec3177efc6765af53fa") --> 5f5fa029177efc6765af5401
+
+level -> 5
+5f5f9ff4177efc6765af53ff -> 5f5fa11f177efc6765af5403
+5f5f9ff4177efc6765af53ff -> 5f5fa13b177efc6765af5405
+
+Chain-1
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff
+chain-2
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5fa029177efc6765af5401
+chain-3
+5f5cffe66fd2143a91058047 -> 5f5d10a97ae2e553d85bea4c
+chain-4
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9f7a177efc6765af53fd
+chain-5
+5f5cffe66fd2143a91058047
+chain-6
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff->5f5fa11f177efc6765af5403
+chain-7
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff->5f5fa13b177efc6765af5405
+
+
