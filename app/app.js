@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var login = require('./routes/login');
 var api_list = require('./routes/api_list');
+var admin_api_list = require('./routes/admin_api_list');
 
 var app = express();
 
@@ -38,6 +39,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', login);
 app.use('/api_list',api_list);
+app.use('/admin_api_list',admin_api_list);
 
 const port = 3000
 

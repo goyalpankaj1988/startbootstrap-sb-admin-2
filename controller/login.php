@@ -17,9 +17,9 @@ switch($response['code'])
 			session_start();
 			$_SESSION['user']['name'] = $resultarr['name'];
 			$_SESSION['user']['token'] = $resultarr['jwt_toket'];
-			// $message = 'Login successful';
-
+			$path = '../user_list.php';
 		}
+		break;	
 	case '424':
 	default:
 		if(isset($resultarr['error']))
@@ -30,11 +30,13 @@ switch($response['code'])
 			}
 
 		}
+		$path = '../login.html';
+
 
 
 
 }
 print_r($_SESSION);
-echo $message;
+header("Location: ".$path);
 
 ?>

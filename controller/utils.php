@@ -3,7 +3,7 @@ class Utils
 {
 	private $back_url = 'http://localhost:3000';
 
-	function callAPI($method, $url, $data){
+	function callAPI($method, $url, $data,$token = ''){
 	   $url =$this->back_url.$url;
 	   $curl = curl_init();
 	   switch ($method){
@@ -23,9 +23,12 @@ class Utils
 	   }
 	   // OPTIONS:
 	   curl_setopt($curl, CURLOPT_URL, $url);
-	   curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+	   
+	    $header =  array(
 	      'Content-Type: application/json',
-	   ));
+	      'token: '.$token
+	   );
+	   curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
 	   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	   curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 	  
