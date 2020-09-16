@@ -3,10 +3,10 @@
 include("header.php");
 ?>
 
-<script src="vendor/jquery/jquery.min.js"></script>
 
+<script src="js/application/add_user.js"></script>
 <?php
-include(__DIR__."/js/application/add_user.js");
+
 include("sidebar.php");
 
 ?>
@@ -51,8 +51,10 @@ include("sidebar.php");
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an User!</h1>
               </div>
-              <form class="user" action="controller\addUser.php" method="POST">
+              <form id="user" class="user" action="" method="POST">
                 <input type="hidden" id="role" name="role" value="user">
+                <input type="hidden" id="reference_hidden" name="reference_hidden" value="">
+                <input type="hidden" id="valid_username" name="valid_username" value="false">
                 <div class="alert alert-success" style="display:none;" role="alert">
   This is a success alert—check it out!
 </div>
@@ -66,6 +68,8 @@ include("sidebar.php");
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control form-control-user required" id="email" name="email" placeholder="Email Address" required>
+                  <span id="email_valid"></span>
+                  <a href="#" class="ml-2" id="validateemail">check avalability</a>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -78,9 +82,18 @@ include("sidebar.php");
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference from" required>
+                    <div id="reference_list" style="display: none"></div>
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" class="form-control form-control-user required" id="mobile" name="mobile" placeholder="mobile" required>
+                    <input type="number" class="form-control form-control-user required" id="mobile" name="mobile" min="10" maxlength="10" placeholder="mobile" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="number" class="form-control form-control-user required" id="account_number" name="account_number" placeholder="account number" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user required" id="ifsc" name="ifsc" placeholder="ifsc code" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -93,7 +106,7 @@ include("sidebar.php");
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="number" class="form-control form-control-user required" id="pin" name="pin" placeholder="Postal code" required>
+                    <input type="number" class="form-control form-control-user required" id="zipcode" name="zipcode" placeholder="Postal code" required>
                   </div>
                   <div class="col-sm-6">
                     <!-- <input type="text" class="form-control form-control-user" id="state " placeholder="State"> -->
@@ -148,7 +161,7 @@ include("sidebar.php");
                  
                 </div>
                 
-                <button type="submit" id="register" class="btn btn-primary btn-user btn-block">Register Account</button> 
+                <button type="button" id="register" class="btn btn-primary btn-user btn-block">Register Account</button> 
                 <hr>
                 
                 

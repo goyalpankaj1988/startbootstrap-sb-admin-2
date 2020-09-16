@@ -2,9 +2,106 @@ const messages = require('../messages.json');
 var purches_history = require('../models/purches_history')
 var user_ref = require('../models/user_ref')
 var commission_log = require('../models/commission_log')
+var user = require('../models/user')
 
 
 var mongo = require('mongodb');
+
+
+
+exports.purche_commission_log = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        
+        let purches_id            = new mongo.ObjectID(req.body.purches_id)       
+        data = {
+            "purches_id": purches_id
+        }
+        getpurche_commission_log(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
+exports.purche_bill = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        
+        let purches_id            = new mongo.ObjectID(req.body.purches_id)       
+        data = {
+            "_id": purches_id
+        }
+        getpurche_bill(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
+exports.user_commission_history = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        // console.log(req)
+        let agent_id            = new mongo.ObjectID(req.body.agent_id)       
+        // console.log(req.body.agent_id)
+        data = {
+            "agent_id": agent_id
+        }
+        getuser_commission_history(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
+exports.user_purches_history = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        // console.log(req.body)
+        let purcheser_id            = new mongo.ObjectID(req.body.purcheser_id)       
+        data = {
+            "purcheser_id": purcheser_id
+        }
+        getuser_purches_history(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
 
 exports.buy_product = async function(req, res) {
     if(req.role && req.name && req.user_id){
@@ -70,6 +167,73 @@ function add_purches_history_table(data){
                 resolve(result._id);
             }
         });
+    });
+}
+
+function getuser_commission_history(data){
+    return new Promise(function(resolve, reject) {
+        console.log(data)
+        commission_log
+        .find(data)
+        .populate('purchaser_id')
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                console.log(result)
+                resolve(result)
+            }
+        })
+    });
+}
+
+function getpurche_commission_log(data){
+    return new Promise(function(resolve, reject) {
+        commission_log
+        .find(data)
+        .populate('purchaser_id')
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                console.log(result)
+                resolve(result)
+            }
+        })
+    });
+}
+
+function getpurche_bill(data){
+    return new Promise(function(resolve, reject) {
+        purches_history
+        .find(data)
+        .populate('purcheser_id')
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                console.log(result)
+                resolve(result)
+            }
+        })
+    });
+}
+function getuser_purches_history(data){
+    return new Promise(function(resolve, reject) {
+        purches_history
+        .find(data)
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                console.log(result)
+                resolve(result)
+            }
+        })
     });
 }
 
@@ -141,7 +305,20 @@ function add_commission_log_table(data){
                 reject(err)
             }
             else{
-                resolve(result._id);
+                user.findByIdAndUpdate({
+                    "_id":data.agent_id
+                },{
+                    $inc:{earned_amonut:data.commision_amount}
+                })
+                .exec(function (err,result1) {
+                    if(err){
+                        reject(err)
+                    }
+                    else{
+                        resolve(result1)
+                    }
+                })
+                // resolve(result._id);
             }
         });
     });

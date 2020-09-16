@@ -16,12 +16,30 @@ exports.add_user = async function(req, res) {
         let role            =req.body.role            
         let email_id        =req.body.email_id  
         let ref_id          =req.body.ref_id 
+        let address1        =req.body.address1       
+        let address2        =req.body.address2        
+        let mobile          =req.body.mobile            
+        let zipcode         =req.body.zipcode            
+        let state           =req.body.state  
+        let country         =req.body.country 
+        let account_number  =req.body.account_number  
+        let ifsc            =req.body.ifsc
 
         data = {
             "user_name":user_name,
             "name":name,
             "role":role,
-            "email_id":email_id
+            "email_id":email_id,
+            "ref_id":ref_id,
+            "address1":address1,
+            "address2":address2,
+            "mobile":mobile,
+            "zipcode":zipcode,
+            "state":state,
+            "country":country,
+            "account_number":account_number,
+            "ifsc":ifsc
+
         }
         let promises = [];
         promises[0]=add_user_table(data,password)
@@ -47,6 +65,59 @@ exports.add_user = async function(req, res) {
         return;
     }
 };
+
+exports.search_user = async function(req, res) {
+  
+    if(req.role && req.name && req.user_id){
+        // let user_id = new mongo.ObjectID(req.user_id);
+        
+        let refernce_name       =req.body.refernce_name  
+
+        data = {
+            "user_name":refernce_name
+
+        }
+        search_userByName(refernce_name)
+            .then(function(values){
+                res.status(messages.status.OK).json(values);
+                return;
+            }).catch(function(error){
+                res.status(messages.status.dbError).json({ errors: error });
+                return;
+            });
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+};
+
+exports.get_usernetwork = async function(req, res) {
+  
+    if(req.role && req.name && req.user_id){
+        // let user_id = new mongo.ObjectID(req.user_id);
+        
+        let id       =req.body.id  
+
+        data = {
+            "id":id
+
+        }
+        getUserNetwork(new mongo.ObjectID(id))  
+            .then(function(values){
+                res.status(messages.status.OK).json(values);
+                return;
+            }).catch(function(error){
+                res.status(messages.status.dbError).json({ errors: error });
+                return;
+            });
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+};
+
 
 function add_user_table(data,password){
     return new Promise(function(resolve, reject) {
@@ -83,7 +154,7 @@ function adde_user_ref(user_id,user_ref_id){
 
     })
 }
-function search_user(keyword) { 
+function search_userByName(keyword) { 
     return new Promise(function(resolve, reject) {        
         user.aggregate([
             { $addFields: { results: { $regexMatch: { input: "$user_name", regex: keyword }  } } },
@@ -93,8 +164,35 @@ function search_user(keyword) {
             reject(err)
         }
         else{
-            resolve(result);
+            if(result == null)
+            {
+                result = {};
+                resolve(result);
+            }
+            else
+            {
+                resolve(result);
+            }
+            
         }
         });
     });
+}
+function getUserNetwork(id){
+    return new Promise(function(resolve, reject) {
+        user_ref
+        .find({
+            "user_ref_id":id
+        })
+        .populate('user_id')
+        .limit(4)
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
 }

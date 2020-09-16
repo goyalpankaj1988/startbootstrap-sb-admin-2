@@ -7,6 +7,7 @@ $url ='/login';
 $data = array('username'=>$_POST['email'],'password'=>$_POST['password']);
 $response = $obj->callAPI("POST",$url,json_encode($data));
 $resultarr = (array) json_decode($response['result']);
+
 $message = 'login successful';
 switch($response['code'])
 {
@@ -16,6 +17,8 @@ switch($response['code'])
 		{
 			session_start();
 			$_SESSION['user']['name'] = $resultarr['name'];
+			$_SESSION['user']['role'] = $resultarr['role'];
+
 			$_SESSION['user']['token'] = $resultarr['jwt_toket'];
 			$path = '../user_list.php';
 		}

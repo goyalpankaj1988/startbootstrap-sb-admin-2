@@ -11,13 +11,17 @@ userSchema = new Schema (
         name            : {type: String, required: true},
         role            : {type: String, enum:['user','admin'], default: 'user'},
         email_id        : {type: String, required: true, unique: true},
-        address_line_1  : {type: String},
-        address_line_2  : {type: String},
-        state           : {type: String},
-        country         : {type: String},
-        account_number  : {type: String},
-        ifc_code        : {type: String},
+        address1  : {type: String, required: true},
+        address2  : {type: String},
+        mobile          : {type: String, required: true},
+        zipcode         : {type: String, required: true},
+        state           : {type: String, required: true},
+        country         : {type: String, required: true},
+        account_number  : {type: String, required: true},
+        ifsc             : {type: String, required: true},
         status          : {type: String, enum:['Y','N'], default: 'Y'},
+        earned_amonut   : {type:Number, default:0},
+        paid_amonut     : {type:Number, default:0},
         created_time    : {type: Date, default: Date.now}  
     }
 );

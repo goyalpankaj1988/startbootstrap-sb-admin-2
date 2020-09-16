@@ -182,6 +182,61 @@ responce code 423 or 424
 
 
 
+http://localhost:3000/admin_api_list/buy_product
+
+Method -> POST
+
+
+Header: ->
+{
+    "token":""
+}
+
+JSON Body: ->
+
+
+{
+    "purcheser_id":"5f5fa13b177efc6765af5405",
+    "item":[
+        {
+            "product_id":"5f5fa13b177efc6765af5405",
+            "quantity":2,
+            "amount":300
+        },
+        {
+            "product_id":"5f5e119c611edf3636e1e3da",
+            "quantity":2,
+            "amount":800
+        }
+    ],
+    "amount":1389
+}
+Response on success :
+{
+    "msg": "succefully"
+}
+
+Response on fail :
+responce code 423 or 424
+{
+    "error": {
+        "driver": true,
+        "name": "MongoError",
+        "index": 0,
+        "code": 11000,
+        "keyPattern": {
+            "user_name": 1
+        },
+        "keyValue": {
+            "user_name": "admin-124"
+        }
+    }
+}
+
+This API will update three table 
+
+
+
 level -> 1 --> ObjectId("5f5cffe66fd2143a91058047")
 level->2
 ObjectId("5f5d084fb13926475bf410d3")
@@ -211,6 +266,52 @@ chain-5
 chain-6
 5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff->5f5fa11f177efc6765af5403
 chain-7
-5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff->5f5fa13b177efc6765af5405
+5f5cffe66fd2143a91058047 -> 5f5d084fb13926475bf410d3 -> 5f5f9ec3177efc6765af53fa -> 5f5f9ff4177efc6765af53ff->
 
+
+User List:
+http://localhost:3000/api_list/user_list
+
+
+Method -> POST
+
+
+Header: ->
+{
+    "token":""
+}
+
+
+
+Purches History for user
+http://localhost:3000/api_list/user_purches_history
+
+{
+    "purcheser_id":"5f5fa13b177efc6765af5405"
+}
+
+
+Commission History for user
+
+http://localhost:3000/api_list/user_commission_history
+
+{
+    "agent_id":"5f5f9ff4177efc6765af53ff"
+}
+
+
+purches_commission_history
+
+http://localhost:3000/api_list/purche_commission_log
+
+{
+    "purches_id":"5f609b9782824a68e064e7df"
+}
+
+
+view bill using purche id
+http://localhost:3000/api_list/purche_bill
+{
+    "purches_id":"5f609b9782824a68e064e7df"
+}
 

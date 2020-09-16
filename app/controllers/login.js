@@ -27,11 +27,12 @@ exports.login= async function(req, res) {
                 
                 let token = jwt.sign({
                     data: todakendata
-                }, 'secret', { expiresIn: '1h' });
+                }, 'secret', { expiresIn: '365d' });
                 // console.log(token)
                 
                 data = {
                     "name":name,
+                    "role":role,
                     "jwt_toket":token
                 }
                 res.status(messages.status.OK).json(data);
