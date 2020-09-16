@@ -1,110 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
+include("header.php");
+?>
+<script src="js/application/user_network.js"></script>
+<?php
+include("sidebar.php");
+if(count($_GET) > 0)
+{
 
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>SB Admin 2 - Blank</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-  <style type="text/css">
-    select {
-    border-radius: 10rem !important;
-    font-size: small !important;
-}
-  </style>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script>
-  $(document).ready (function(){
-
-              $("#ajay").hide();
-              $("#neha").hide();
-              $("#sarita").hide();
-              $("#dilip").hide();
-              $("#mahesh").hide();
-              
-   });
-  function showNetwork(id,layer_count)
+  if(isset($_GET['id']))
   {
-    if(layer_count == 2)
-    {
-
-      $("#ajay").hide();
-      $("#neha").hide();
-      $("#sarita").hide();
-      $("#dilip").hide();
-
-    }
-    $.each([ 'ajay','neha','sarita','dilip','mahesh' ], function( index, value ) {
-      $('.highlight_'+value).removeClass("div-blue");
-    });
-
-    $("#mahesh").hide();
-
-    $("#"+id).show();
-    $('.highlight_'+id).addClass("div-blue");
-
+     $id = $_GET['id'];
   }
-</script>
-<style>
-  .div-blue{
-background: blue; /* make this whatever you want */
+  if(isset($_GET['name']))
+  {
+     $name = $_GET['name'];
+  }
+  include(__DIR__."/controller/user_network.php");
+
 }
-</style>
-</head>
 
-<body id="page-top">
+$layercount = 1;
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+?>
 
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Admin</div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <!--<li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>-->
-      <li class="nav-item">
-        <a class="nav-link" href="add_user.html">
-          <i class="fas fa-fw "></i>
-          <span>Add User</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="add_user.html">
-          <i class="fas fa-fw "></i>
-          <span>User List</span></a>
-      </li>
-      
-
-
-
-      
-    </ul>
-    <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -121,18 +39,48 @@ background: blue; /* make this whatever you want */
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Vijay Singh's Network</h1>
+            <h1 class="h3 mb-0 text-gray-800"><?php echo $name;?>'s Network</h1>
           </div>
 
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4 highlight_ajay">
+          <div class="row row_layer_1">
+            <input type="hidden" id="layer" name="layer" value="1">
+            <?php foreach($userNetworkArr as $key=>$value){
+            ?>
+            
+            <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" onclick="showNetwork('ajay',2)">Ajay Pal</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 user_network text-capitalize" user_id="<?php echo $value['user_id']['_id'];?>" user_name="<?php echo $value['user_id']['name'];?>" layer_count="1"><?php echo $value['user_id']['name'];?></div>
+                      <div class="text-xs font-weight-bold text-primary mb-1">
+                        <a href="">Transaction history</a><br/>
+                        <a href="">Purchase history</a><br/>
+                        <!-- <span>User count - 2</span> -->
+                      </div>
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <?php
+            }?>
+            </div> 
+            <div class="layer_2">
+            </div>
+            <div class="layer_3">
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <!-- <div class="col-xl-3 col-md-6 mb-4 highlight_ajay">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" onclick="showNetwork('ajay',2)"><?php echo $value['user_id']['name'];?></div>
                       <div class="text-xs font-weight-bold text-primary mb-1">
                         <a href="">Transaction history</a><br/>
                         <a href="">Purchase history</a><br/>
@@ -144,10 +92,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4 highlight_sarita">
+            <!-- <div class="col-xl-3 col-md-6 mb-4 highlight_sarita">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -163,10 +111,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4 highlight_neha">
+            <!-- <div class="col-xl-3 col-md-6 mb-4 highlight_neha">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -183,10 +131,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4 highlight_dilip">
+            <!-- <div class="col-xl-3 col-md-6 mb-4 highlight_dilip">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -202,20 +150,20 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div>-->
+          
 
 
           <!--- start of ajay's network---->
-          <div id="ajay">
+          <!-- <div id="ajay">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Ajay Pal's Network</h1>
           </div>
 
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+             Earnings (Monthly) Card Example -->
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -232,10 +180,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -251,255 +199,21 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div -->
 
             <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Kuldeep Mathur</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 0</span>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Minati KM</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 4</span>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            
         <!--- end of ajay's network---->
          <!--- start of sarita's network---->
-          <div id="sarita">
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Sarita Desai's Network</h1>
-          </div>
+         
 
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Sunil Balkr</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 2</span>
-                      </div>
-
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
             <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Partha mukharjee</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 4</span>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Naveen kul</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 0</span>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4 highlight_mahesh">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" onclick="showNetwork('mahesh',3)">Mahesh dixit</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 4</span>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--- end of sarita's network---->
-         <!--- start of neha's network---->
-          <div id="neha">
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Neha Mathur's Network</h1>
-          </div>
-
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Guru Charan</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 2</span>
-                      </div>
-
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Pihu bhatia</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 4</span>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Shailesh Mathur</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 0</span>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Shanti singh</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 4</span>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--- end of neha's network---->
-         <!--- start of dilip's network---->
-          <div id="dilip">
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dilip singh's Network</h1>
-          </div>
-
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">K C Pal</div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <span>User count - 2</span>
-                      </div>
-
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -515,10 +229,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -535,10 +249,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div -->
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -556,20 +270,20 @@ background: blue; /* make this whatever you want */
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!--- end of dilip's network---->
 
         <!---start of 3rd layer---->
          <!--- start of mahesh's network---->
-          <div id="mahesh">
+          <!-- <div id="mahesh">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Mahesh dixit's Network</h1>
           </div>
 
-          <div class="row">
+          <div class="row">-->
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -586,10 +300,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --> 
 
             <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -605,10 +319,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Tasks Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -625,10 +339,10 @@ background: blue; /* make this whatever you want */
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -646,7 +360,7 @@ background: blue; /* make this whatever you want */
               </div>
             </div>
           </div>
-        </div>
+        </div>  -->
         <!---end of third layer---->
           
         </div>
