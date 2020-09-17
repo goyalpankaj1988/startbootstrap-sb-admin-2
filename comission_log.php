@@ -68,8 +68,8 @@ include(__DIR__."/controller/comission_log.php");
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Bayer Name</th>
-                    <th>Bayer Level</th>
+                    <th>Buyer Name</th>
+                    <th>Buyer Level</th>
                     <th>Earned amount</th>
                     <th>Comission %</th>
                     <th>Purchased On</th>

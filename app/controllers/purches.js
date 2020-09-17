@@ -192,7 +192,7 @@ function getpurche_commission_log(data){
     return new Promise(function(resolve, reject) {
         commission_log
         .find(data)
-        .populate('purchaser_id')
+        .populate('agent_id')
         .exec(function (err,result) {
             if(err){
                 reject(err)

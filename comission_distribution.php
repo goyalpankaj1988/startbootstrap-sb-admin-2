@@ -67,8 +67,8 @@ include(__DIR__."/controller/comission_distribution.php");
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Bayer Name</th>
-                    <th>Bayer Level</th>
+                    <th>Buyer Name</th>
+                    <th>Buyer Level</th>
                     <th>Earned amount</th>
                     <th>Comission %</th>
                     <th>Purchased On</th>
@@ -79,7 +79,7 @@ include(__DIR__."/controller/comission_distribution.php");
                 <?php
                 
                   foreach($ProductList_Array as $key=>$value){
-                    echo '<tr><td>'.$value['purchaser_id']['name'].'</td>';
+                    echo '<tr><td>'.$value['agent_id']['name'].'</td>';
                     echo '<td >'.$value['purchaser_level'].'</td>';
                     echo '<td >'.$value['commision_amount'].'</td>';
                     echo '<td >'.$value['commision_per'].'</td>';

@@ -43,21 +43,43 @@ $layercount = 1;
           </div>
 
           <div class="row row_layer_1">
-            <input type="hidden" id="layer" name="layer" value="1">
-            <?php foreach($userNetworkArr as $key=>$value){
-            ?>
-            
-            <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
+           <?php if(count($userNetworkArr) > 0){?>
+              <input type="hidden" id="layer" name="layer" value="1">
+              <?php foreach($userNetworkArr as $key=>$value){
+              ?>
+              
+              <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="h5 mb-0 font-weight-bold text-gray-800 user_network text-capitalize" user_id="<?php echo $value['user_id']['_id'];?>" user_name="<?php echo $value['user_id']['name'];?>" layer_count="1"><?php echo $value['user_id']['name'];?></div>
+                        <div class="text-xs font-weight-bold text-primary mb-1">
+                          <a href="">Transaction history</a><br/>
+                          <a href="">Purchase history</a><br/>
+                          <!-- <span>User count - 2</span> -->
+                        </div>
+
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <?php
+              }
+            }
+            else
+            {?>
+              <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800 user_network text-capitalize" user_id="<?php echo $value['user_id']['_id'];?>" user_name="<?php echo $value['user_id']['name'];?>" layer_count="1"><?php echo $value['user_id']['name'];?></div>
-                      <div class="text-xs font-weight-bold text-primary mb-1">
-                        <a href="">Transaction history</a><br/>
-                        <a href="">Purchase history</a><br/>
-                        <!-- <span>User count - 2</span> -->
-                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800 user_network text-capitalize" >No user Found</div>
+                      
 
                     </div>
                     
@@ -65,10 +87,8 @@ $layercount = 1;
                 </div>
               </div>
             </div>
-
-
-            <?php
-            }?>
+            <?php }
+            ?>
             </div> 
             <div class="layer_2">
             </div>

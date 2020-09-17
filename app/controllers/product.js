@@ -36,6 +36,38 @@ exports.add_product = async function(req, res) {
     }
 };
 
+exports.list_product = async function(req, res) {
+  
+    if(req.role && req.name && req.user_id){
+        getlist_product()
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return;
+        }).catch(function(error){
+            res.status(messages.status.dbError).json({ errors: error });
+            return;
+        });
+    }else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+    
+}
+
+function getlist_product(){
+    return new Promise(function(resolve, reject) {
+        product_list
+        .find()
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+}
 
 function add_product_table(data){
     return new Promise(function(resolve, reject) {

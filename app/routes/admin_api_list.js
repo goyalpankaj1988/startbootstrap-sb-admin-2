@@ -26,5 +26,10 @@ router.post('/search_user',
     user.search_user
 );
 
+router.post('/product_list',
+    [validate_client_token, role_validation],
+    product.list_product
+);
+
 
 module.exports = router;
