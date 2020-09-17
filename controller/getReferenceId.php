@@ -14,7 +14,7 @@ if(isset($_SESSION['user']['token']))
 	  {
 	  	$result = json_decode($response['result'],true);
 	  	foreach ($result as $key => $value) {
-	  		$reference_result[$value['_id']] = $value['name'];
+	  		$reference_result[$value['_id']] = $value['user_name'];
 	  		
 	  	}
 	  }

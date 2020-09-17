@@ -15,7 +15,7 @@ if(isset($_SESSION['user']['token']))
 }
 else{
 
-    $path = '../user_list.php';
+    $path = 'login.php';
     header("Location: ".$path);
 }
 

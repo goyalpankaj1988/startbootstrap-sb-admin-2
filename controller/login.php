@@ -33,13 +33,12 @@ switch($response['code'])
 			}
 
 		}
-		$path = '../login.html';
+		$path = '../login.php';
 
 
 
 
 }
-print_r($_SESSION);
 header("Location: ".$path);
 
 ?>

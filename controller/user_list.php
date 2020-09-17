@@ -9,7 +9,7 @@ if(isset($_SESSION['user']['token']))
       $ProductList_Array = json_decode($response['result'],true);
 }
 else{
-    $path = 'login.html';
+    $path = 'login.php';
     header("Location: ".$path);
 }
 

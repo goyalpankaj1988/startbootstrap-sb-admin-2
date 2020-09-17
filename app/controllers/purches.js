@@ -3,10 +3,62 @@ var purches_history = require('../models/purches_history')
 var user_ref = require('../models/user_ref')
 var commission_log = require('../models/commission_log')
 var user = require('../models/user')
+var panding_amount_paid_log = require('../models/panding_amount_paid_log');
 
 
 var mongo = require('mongodb');
 
+exports.panding_amount_paid_payment = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        
+        let purcheser_id            = new mongo.ObjectID(req.body.purcheser_id)
+        let paid_by            = new mongo.ObjectID(req.user_id)
+        let amount       = req.body.amount
+        let miscellaneous       = req.body.miscellaneous
+        data = {
+            "purcheser_id": purcheser_id,
+            "paid_by":paid_by,
+            "amount":amount,
+            "miscellaneous":miscellaneous
+        }
+        panding_amount_paid_payment_add(data)
+        .then(function(values){
+            res.status(messages.status.OK).json({"message":"amount paid succesfully"});
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
+exports.panding_amount_paid_payment_list = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        
+        let purcheser_id            = new mongo.ObjectID(req.body.purcheser_id)
+        data = {
+            "purcheser_id": purcheser_id
+        }
+        getpanding_amount_paid_payment_list(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
 
 
 exports.purche_commission_log = async function(req, res) {
@@ -167,6 +219,49 @@ function add_purches_history_table(data){
                 resolve(result._id);
             }
         });
+    });
+}
+function panding_amount_paid_payment_add(data){
+    return new Promise(function(resolve, reject) {
+        var result = new panding_amount_paid_log(data);
+        result.save(function (err) {  
+            if(err){
+                reject(err)
+            }
+            else{
+                user.findByIdAndUpdate({
+                    "_id":data.purcheser_id
+                },{
+                    $inc:{paid_amonut:data.amount}
+                })
+                .exec(function (err,result1) {
+                    if(err){
+                        reject(err)
+                    }
+                    else{
+                        resolve(result1)
+                    }
+                })
+            }
+        });
+    });
+}
+
+
+
+
+function getpanding_amount_paid_payment_list(data){
+    return new Promise(function(resolve, reject) {
+        panding_amount_paid_log
+        .find(data)
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
     });
 }
 

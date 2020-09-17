@@ -26,6 +26,7 @@ foreach($ProductList_Array as $key=>$value){
       <!-- Main Content -->
       <div id="content">
 
+      <?php include("topbar.html");?>
        
         <!-- Begin Page Content -->
         <div class="container-fluid">

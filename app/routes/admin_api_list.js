@@ -31,5 +31,10 @@ router.post('/product_list',
     product.list_product
 );
 
+router.post('/panding_amount_paid_payment',
+    [validate_client_token, role_validation],
+    purches.panding_amount_paid_payment
+);
+
 
 module.exports = router;

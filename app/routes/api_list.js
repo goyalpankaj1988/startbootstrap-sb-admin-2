@@ -43,4 +43,10 @@ router.post('/user_network',
 );
 
 
+router.post('/panding_amount_paid_payment_list',
+    [validate_client_token],
+    purches.panding_amount_paid_payment_list
+);
+
+
 module.exports = router;

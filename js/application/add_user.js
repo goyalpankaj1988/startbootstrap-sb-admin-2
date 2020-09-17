@@ -128,9 +128,10 @@ function isvalidform()
 
 	$("#reference").keypress(function(event){
 		var ref_name =$("#reference").val(); 
+		$("#reference_hidden").val(' ');
 		if(ref_name.length >= 3)
 		{
-			$("#reference_hidden").val(' ');
+			
 			$.ajax({
 		        url:"controller/getReferenceId.php",
 		        data: { 

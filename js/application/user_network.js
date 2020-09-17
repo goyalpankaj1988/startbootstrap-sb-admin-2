@@ -47,7 +47,7 @@ $(document).ready(function(){
 						console.info(next_layer);
 						html +='<div id="ajay">';
 						html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
-						html += '<h1 class="h3 mb-0 text-gray-800">'+user_name+"'s Network</h1>";
+						html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
 						html += '</div>';
 						html += '<div class="row">';
 						$.each(obj, function(key,value) {
@@ -83,7 +83,7 @@ $(document).ready(function(){
 					{
 						html +='<div id="ajay">';
 						html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
-						html += '<h1 class="h3 mb-0 text-gray-800">'+user_name+"'s Network</h1>";
+						html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
 						html += '</div>';
 						html += '<div class="row">';
 						html += '<div class="col-xl-3 col-md-6 mb-4 highlight_ajay">';

@@ -1,12 +1,10 @@
 <?php 
 include("header.php");
-?>
 
-<?php
 include("sidebar.php");
 $persone_id = $_GET['id'];
 $persone_name = $_GET['name'];
-include(__DIR__."/controller/purchase_log.php");
+include(__DIR__."/controller/payment_log.php");
 // print_r($ProductList_Array);exit;
 
 ?>
@@ -26,7 +24,7 @@ include(__DIR__."/controller/purchase_log.php");
        <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Comission log for <?php echo $persone_name; ?></h1>
+        <h1 class="h3 mb-2 text-gray-800">Payment log for <?php echo $persone_name; ?></h1>
         <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
         <!-- DataTales Example -->
@@ -60,18 +58,18 @@ include(__DIR__."/controller/purchase_log.php");
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Amount</th>
-                    <th>Purchased On</th>
-                    <th>View Bill</th>
-                    <th>Comission distribution</th>
+                    <th>Paid Amount</th>
+                    <th>Paid On</th>
+                    <th>Transaction id</th>
+                    <th>Remark</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Amount</th>
-                    <th>Purchased On</th>
-                    <th>View Bill</th>
-                    <th>Comission distribution</th>
+                    <th>Paid Amount</th>
+                    <th>Paid On</th>
+                    <th>Transaction id</th>
+                    <th>Remark</th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -80,28 +78,9 @@ include(__DIR__."/controller/purchase_log.php");
                   foreach($ProductList_Array as $key=>$value){
                     echo '<tr><td>'.$value['amount'].'</td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
-                    echo '<td >
-                    <a href="view_bill.php?id='.$value['_id'].'" class="purchase-bill" purchase_id="'.$value['_id'].'"  title="View Bill">
-                      <span class="icon fa-2x text-yellow-300">
-                        
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                        </svg>
-                        
-                        <!-- <i class="fa-twitter-square"></i> -->
-                      </span></a>
-                  </td>';
-                  echo '<td >
-                    <a href="comission_distribution.php?id='.$value['_id'].'" title="View Comission distribution">
-                      <span class="icon fa-2x text-yellow-300">
-                        
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                        </svg>
-                        
-                        <!-- <i class="fa-twitter-square"></i> -->
-                      </span></a>
-                  </td></tr>';
+                    echo '<td>'.$value['miscellaneous'][0]['transaction'].'</td>';
+                    echo '<td>'.$value['miscellaneous'][0]['remark'].'</td></tr>';
+                    
                   }
                 ?>  
                 
@@ -117,6 +96,8 @@ include(__DIR__."/controller/purchase_log.php");
 
       </div>
       <!-- End of Main Content -->
+
+     
 
 
 <?php include("footer.php");?>
