@@ -41,24 +41,42 @@ exports.add_user = async function(req, res) {
             "ifsc":ifsc
 
         }
-        let promises = [];
-        promises[0]=add_user_table(data,password)
-        Promise.all(promises).then(function(values){
-            let added_user_id   =values[0];
-            console.log(added_user_id)
-            adde_user_ref(added_user_id,ref_id)
-            .then(function(values){
-                res.status(messages.status.OK).json({ "msg":"user added succefully"});
-                return;
-            }).catch(function(error){
+        check_user_ref(ref_id)
+        .then(function(values){
+            if(values!=null && values.first_purches=='Y' && values.membar_count<4){
+                // console.log(values)
+                let promises = [];
+                promises[0]=add_user_table(data,password)
+                Promise.all(promises).then(function(values){
+                    let added_user_id   =values[0];
+                    console.log(added_user_id)
+                    adde_user_ref(added_user_id,ref_id)
+                    .then(function(values){
+                        res.status(messages.status.OK).json({ "msg":"user added succefully"});
+                        return;
+                    }).catch(function(error){
+                        res.status(messages.status.dbError).json({ errors: error });
+                        return;
+                    });
+                }).catch(function(error){
+                    res.status(messages.status.dbError).json({ errors: error });
+                    return;
+            
+                });
+            }
+            else{
+                console.log(error)
                 res.status(messages.status.dbError).json({ errors: error });
                 return;
-            });
-        }).catch(function(error){
+            }
+            
+        })
+        .catch(function(error){
             res.status(messages.status.dbError).json({ errors: error });
             return;
     
         });
+        
     }
     else{
         res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
@@ -134,6 +152,25 @@ function add_user_table(data,password){
     });
 }
 
+
+function check_user_ref(user_ref_id){
+    return new Promise(function(resolve, reject) {
+        user_ref_id      = new mongo.ObjectID(user_ref_id)
+        
+        user.findOne({
+            "_id":user_ref_id
+        })
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+}
+
 function adde_user_ref(user_id,user_ref_id){
     return new Promise(function(resolve, reject) {
         user_id      = new mongo.ObjectID(user_id)
@@ -146,9 +183,37 @@ function adde_user_ref(user_id,user_ref_id){
         user_ref_t.save(function (err) {  
             if(err){
                 reject(err)
+
             }
             else{
-                resolve(user_ref_t._id);
+                user.findByIdAndUpdate({
+                    "_id":user_id
+                },{
+                    $set:{"user_ref_id":user_ref_id}
+                     
+                })
+                .exec(function (err,result1) {
+                    if(err){
+                        reject(err)
+                    }
+                    else{
+                        user.findByIdAndUpdate({
+                            "_id":user_ref_id
+                        },{
+                            $inc:{membar_count:1}
+                             
+                        })
+                        .exec(function (err,result1) {
+                            if(err){
+                                reject(err)
+                            }
+                            else{
+                                resolve(result1)
+                            }
+                        })
+                    }
+                })
+                // resolve(user_ref_t._id);
             }
         });
 
@@ -158,7 +223,16 @@ function search_userByName(keyword) {
     return new Promise(function(resolve, reject) {        
         user.aggregate([
             { $addFields: { results: { $regexMatch: { input: "$user_name", regex: keyword }  } } },
-            {$match : { results : true }}
+            {
+                $match : { 
+                    results : true,
+                    "status":"Y",
+                    "first_purches":"Y",
+                    "membar_count":{$lt:4}
+                    
+                }
+            }
+            
         ]).exec(function (err,result) {
         if(err){
             reject(err)

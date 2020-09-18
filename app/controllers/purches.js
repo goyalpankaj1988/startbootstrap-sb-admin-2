@@ -179,6 +179,8 @@ exports.buy_product = async function(req, res) {
 
         promises[0]=add_purches_history_table(data)
         promises[1]=getRefUserList(req.body.purcheser_id)
+        promises[2]=updateFirstPurches(req.body.purcheser_id)
+        
         
 
         Promise.all(promises).then(function(values){
@@ -222,6 +224,24 @@ function add_purches_history_table(data){
         });
     });
 }
+function updateFirstPurches(id){
+    return new Promise(function(resolve, reject) {
+        user.findByIdAndUpdate({
+            "_id":new mongo.ObjectID(id)
+        },{
+            $set:{"first_purches":"Y"}
+             
+        })
+        .exec(function (err,result1) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result1)
+            }
+        })
+    });
+}
 function panding_amount_paid_payment_add(data){
     return new Promise(function(resolve, reject) {
         var result = new panding_amount_paid_log(data);
@@ -234,6 +254,7 @@ function panding_amount_paid_payment_add(data){
                     "_id":data.purcheser_id
                 },{
                     $inc:{paid_amonut:data.amount}
+                     
                 })
                 .exec(function (err,result1) {
                     if(err){
@@ -405,6 +426,7 @@ function add_commission_log_table(data){
                     "_id":data.agent_id
                 },{
                     $inc:{earned_amonut:data.commision_amount}
+                    
                 })
                 .exec(function (err,result1) {
                     if(err){

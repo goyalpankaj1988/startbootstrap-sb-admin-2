@@ -22,6 +22,9 @@ userSchema = new Schema (
         status          : {type: String, enum:['Y','N'], default: 'Y'},
         earned_amonut   : {type:Number, default:0},
         paid_amonut     : {type:Number, default:0},
+        user_ref_id :{type: Schema.Types.ObjectId, ref: 'user'},
+        first_purches :{type: String, enum:['Y','N'], default: 'N'},
+        membar_count :{type:Number, default:0, min:0, max:4},
         created_time    : {type: Date, default: Date.now}  
     }
 );

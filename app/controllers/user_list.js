@@ -17,22 +17,26 @@ exports.user_list = async function(req, res) {
         .then(function(values){
             let resultData = []
             // console.log(values)
-            for (i=0; i<values.length; i++){
-                data_array = {
-                    // "role":values[i].role,
-                    "name":values[i].name,
-                    "status":values[i].status,
-                    "earned_amonut":values[i].earned_amonut,
-                    "paid_amonut":values[i].paid_amonut,
-                    "created_time":values[i].created_time,
-                    "account_number":values[i].account_number,
-                    "ifsc":values[i].ifsc,
-                    "_id":values[i]._id
-                }
-                // console.log(data_array)
-                resultData.push(data_array)
-            }
-            res.status(messages.status.OK).json(resultData);
+            // for (i=0; i<values.length; i++){
+            //     console.log(values[i].user_ref_id.name)
+            //     data_array = {
+            //         // "role":values[i].role,
+            //         "name":values[i].name,
+            //         "status":values[i].status,
+            //         "earned_amonut":values[i].earned_amonut,
+            //         "paid_amonut":values[i].paid_amonut,
+            //         "created_time":values[i].created_time,
+            //         "account_number":values[i].account_number,
+            //         "ifsc":values[i].ifsc,
+            //         "user_ref_id":values[i].user_ref_id._id,
+            //         "user_ref_name":values[i].user_ref_id.name,
+            //         "membar_count":values[i].membar_count,
+            //         "_id":values[i]._id
+            //     }
+            //     console.log(data_array)
+            //     resultData.push(data_array)
+            // }
+            res.status(messages.status.OK).json(values);
             return;
         }).catch(function(error){
             res.status(messages.status.dbError).json({ errors: error });
@@ -49,6 +53,7 @@ function getuser_list(data){
     return new Promise(function(resolve, reject) {
         user
         .find(data)
+        .populate('user_ref_id')
         .exec(function (err,result) {
             if(err){
                 reject(err)

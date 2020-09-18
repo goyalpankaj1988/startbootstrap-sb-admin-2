@@ -86,7 +86,7 @@ include(__DIR__."/controller/comission_log.php");
                     echo '<td >'.$value['commision_per'].'</td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
                     echo '<td >
-                    <a href="#" title="View Bill">
+                    <a href="view_bill.php?id='.$value['purches_id'].'" class="purchase-bill" purchase_id="'.$value['purches_id'].'" title="View Bill">
                       <span class="icon fa-2x text-yellow-300">
                         
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

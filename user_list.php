@@ -65,6 +65,7 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
+                    <th>Refrance by</th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -78,6 +79,7 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
+                    <th>Refrance by</th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -125,7 +127,8 @@ include(__DIR__."/controller/user_list.php");
                       <i class="fas fa-history"></i>
                       <!-- <i class="fa-twitter-square"></i> -->
                     </span></a></td>';
-                    echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td></tr>';
+                    echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
+                    echo '<td><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network">'.$value['user_ref_id']['name'].'</a></td></tr>';
                   }
                 ?> 
                  

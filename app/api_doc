@@ -315,3 +315,35 @@ http://localhost:3000/api_list/purche_bill
     "purches_id":"5f609b9782824a68e064e7df"
 }
 
+
+
+{
+    "_id" : ObjectId("5f64b767c88f7d41390d0f1a"),
+    "role" : "admin",
+    "status" : "Y",
+    "earned_amonut" : 0,
+    "paid_amonut" : 0,
+    "first_purches" : "Y",
+    "membar_count" : 0,
+    "user_name" : "admin",
+    "name" : "pankaj  goyal",
+    "email_id" : "admin",
+    "address1" : "90",
+    "mobile" : "8989898989",
+    "zipcode" : "90",
+    "state" : "Karnataka",
+    "country" : "India",
+    "account_number" : "9090",
+    "ifsc" : "909",
+    "created_time" : ISODate("2020-09-18T13:34:31.502Z"),
+    "password" : "$2a$08$4MXQfTR/GrgCGKHn4zd/TuxE70yRx8LUn9ylCtmc7bH9.2hD9lZca",
+    "__v" : 0,
+    "user_ref_id" : ObjectId("5f64b767c88f7d41390d0f1a")
+}
+
+{
+    "_id" : ObjectId("5f6482d55ff9bb0d0cafb13e"),
+    "user_id" : ObjectId("5f64b767c88f7d41390d0f1a"),
+    "user_ref_id" : ObjectId("5f64b767c88f7d41390d0f1a"),
+    "__v" : 0
+}
