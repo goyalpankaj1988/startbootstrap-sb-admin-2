@@ -1,6 +1,14 @@
 <?php 
 include("header.php");
+error_reporting(0);
+?>
+<script src="js/application/user_list.js">
+  
 
+
+</script>
+
+<?php
 include("sidebar.php");
 include(__DIR__."/controller/user_list.php");
 // print_r($ProductList_Array);
@@ -65,10 +73,7 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
-                    <?php if($_SESSION['user']['role']=='admin'){?>
-                    <th>Reference by</th>
-                    <?php }?>
-                    
+                    <th>Refrance by</th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -82,10 +87,7 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
-                    <?php if($_SESSION['user']['role']=='admin'){?>
-                    <th>Reference by</th>
-                    <?php }?>
-                    
+                    <th>Refrance by</th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -93,7 +95,8 @@ include(__DIR__."/controller/user_list.php");
                foreach($ProductList_Array as $key=>$value){
                     $pendingA = $value['earned_amonut'] - (float)$value['paid_amonut'];
 		    $pendingA = round($pendingA,2);
-                    echo '<tr><td><a href="user_network.php?id='.$value['_id'].'&name='.$value['name'].'" title="User network">'.$value['name'].'</a></td>';
+                    echo '<tr><td><img class="mr-2 userinfo" title = "User details" mobile="'.$value['mobile'].'" email_id="'.$value['email_id'].'"
+                    address1="'.$value["address1"].'" address2="'.$value["address2"].'" name="'.$value["name"].'" zip="'.$value['zipcode'].'" state="'.$value['state'].'" country="'.$value['country'].'" account="'.$value['account_number'].'" ifsc="'.$value['ifsc'].'" data-toggle="modal" data-target="#userdetailsModal" src="img/select-user.png" style="height: 16px;width: 16px;" ></img><a href="user_network.php?id='.$value['_id'].'&name='.$value['name'].'" title="User network">'.$value['name'].'</a></td>';
                     echo '<td ><a href="comission_log.php?id='.$value['_id'].'&name='.$value['name'].' " title = "Comission log">'.$value['earned_amonut'].'</a></td>';
                     echo '<td ><a href="payment_log.php?id='.$value['_id'].'&name='.$value['name'].'" title = "Payment log">'.$value['paid_amonut'].'</a></td>';
                     echo '<td >';
@@ -134,10 +137,7 @@ include(__DIR__."/controller/user_list.php");
                       <!-- <i class="fa-twitter-square"></i> -->
                     </span></a></td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
-                    if($_SESSION['user']['role']=='admin'){
-                      echo '<td><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network">'.$value['user_ref_id']['name'].'</a></td>';
-                    }
-                    echo '</tr>';
+                    echo '<td><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network">'.$value['user_ref_id']['name'].'</a></td></tr>';
                   }
                 ?> 
                  
@@ -153,7 +153,22 @@ include(__DIR__."/controller/user_list.php");
       </div>
       <!-- End of Main Content -->
 
-     
+     <div class="modal fade" id="userdetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="user_details">
+        
+      </div>
+      
+    </div>
+  </div>
+</div
 
 
 <?php include("footer.php");?>

@@ -1,16 +1,8 @@
 <?php 
 include("header.php");
 ?>
-<script src=""></script>
-<script type="text/javascript">     
-    function PrintDiv() {    
-       var divToPrint = $('.card-body');
-       var popupWin = window.open('', '_blank', 'width=300,height=300');
-       popupWin.document.open();
-       popupWin.document.write('<html><body onload="window.print()">' + divToPrint.html() + '</html>');
-        popupWin.document.close();
-            }
- </script>
+<script src="js/application/view_bill.js"></script>
+
 <?php
 include("sidebar.php");
 $purchase_id = $_GET['id'];
@@ -92,7 +84,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                   <br>
                   <b>Purchase Id:</b> <?php echo $purchaseDetails['_id'];?><br>
                   <b>Purchase Time:</b> <?php echo date("d-M-Y H:i:s", strtotime($purchaseDetails['created_time']));?><br>
-                  <b>Account:</b> <?php echo $purchaseDetails['account_number'];?>
+                  <!-- <b>Account:</b> <?php echo $purchaseDetails['account_number'];?> -->
                 </div>
                 <!-- /.col -->
               </div>
@@ -168,7 +160,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
           <!-- this row will not appear when printing -->
               <div class="row no-print ml-2">
                 <div class="col-xs-12 float-right">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default" ><i class="fa fa-print"></i> Print</a>
+                  <a href="#" onclick="PrintDiv()" target="_blank" class="btn btn-default" ><i class="fa fa-print"></i> Print</a>
                   
                 </div>
               </div>

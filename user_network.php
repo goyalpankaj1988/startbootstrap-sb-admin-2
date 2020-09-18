@@ -60,7 +60,7 @@ $layercount = 1;
                               user_id="<?php echo $value['user_id']['_id'];?>" user_name="<?php echo $value['user_id']['name'];?>" layer_count="1"><?php echo $value['user_id']['name'];?>
                           </div>
                           <div class="col-auto">
-                            <i class="fas fa-user user_details fa-2x text-gray-300" mobile="<?php echo $value['user_id']['mobile'];?>" email_id="<?php echo $value['user_id']['email_id'];?>" joined_on="<?php echo date("d-M-Y H:i:s", strtotime($value['user_id']['created_time']));?>" member_count="<?php echo $value['user_id']['membar_count'];?>" data-toggle="modal" data-target="#basicExampleModal"></i>
+                            <i class="fas fa-user userinformation fa-2x text-gray-300" mobile="<?php echo $value['user_id']['mobile'];?>" email_id="<?php echo $value['user_id']['email_id'];?>" joined_on="<?php echo date("d-M-Y H:i:s", strtotime($value['user_id']['created_time']));?>" member_count="<?php echo $value['user_id']['membar_count'];?>" data-toggle="modal" data-target="#basicExampleModal"></i>
                           </div>
                         </div>
                       
@@ -113,7 +113,7 @@ $layercount = 1;
       <!-- End of Main Content -->
 
       <!-- Modal -->
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="userinfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

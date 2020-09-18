@@ -63,7 +63,7 @@ $(document).ready(function(){
 								
 								html +='</div>';
 								html +='<div class="col-auto">';
-								html +='<i class="fas fa-user user_details fa-2x text-gray-300" mobile="'+value.mobile+'" email_id="'+value.email_id+'" joined_on="'+value.joined_on+'" member_count="'+value.membar_count+'" data-toggle="modal" data-target="#basicExampleModal"></i>';
+								html +='<i class="fas fa-user userinformation fa-2x text-gray-300" mobile="'+value.mobile+'" email_id="'+value.email_id+'" joined_on="'+value.joined_on+'" member_count="'+value.membar_count+'" data-toggle="modal" data-target="#basicExampleModal"></i>';
 								html +='</div>';
 								html +='</div>';
 								html += '<div class="text-xs font-weight-bold text-primary mb-1">';
@@ -122,9 +122,9 @@ $(document).ready(function(){
 		
 	});
 
-	  $('body').on('click', '[data-toggle="modal"]', function() {
+	  $('body').on('click', '.userinformation', function() {
 	  // $('[data-toggle="modal"]').click(function() { 
-	    var modalId = $('#basicExampleModal');
+	    var modalId = $('#userinfoModal');
 	    
 	    var html = '';
 	    $("#user_details").html('');

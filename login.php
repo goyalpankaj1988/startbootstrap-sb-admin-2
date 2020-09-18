@@ -46,10 +46,10 @@ session_destroy();
                   </div>
                   <form class="user" action="controller\login_ae.php" method="post">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="text" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" required>
                     </div>
                     <!--<div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -57,9 +57,9 @@ session_destroy();
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>-->
-                    <a href="#" onclick="this.closest('form').submit();return false;" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       Login
-                    </a>
+                    </button>
                     <hr>
                    <!---- <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
