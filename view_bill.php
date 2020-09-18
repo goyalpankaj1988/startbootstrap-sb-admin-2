@@ -16,6 +16,7 @@ include("sidebar.php");
 $purchase_id = $_GET['id'];
 include(__DIR__."/controller/view_bill.php");
 $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
+// print_r($purchaseBillArr);
 ?>
 
 
@@ -139,7 +140,27 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-        
+              <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6" style="width: 50%">
+         
+
+          
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6" style="width: 50%">
+          <p class="lead"></p>
+
+          <div class="table-responsive">
+            <table class="table text-right">
+              <tbody><tr>
+                <th style="width:50%">Total (INR):</th>
+                <td id="total_amt_1"><span class="font-weight-bold"><?php echo $purchaseBillArr[0]['amount']; ?></span></td>
+              </tr>
+              
+            </tbody></table>
+          </div>
+        </div>
               
               
             </section>

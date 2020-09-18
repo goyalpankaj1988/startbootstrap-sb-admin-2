@@ -63,13 +63,13 @@ $(document).ready(function(){
 								
 								html +='</div>';
 								html +='<div class="col-auto">';
-								html +='<i class="fas fa-user user_details fa-2x text-gray-300" mobile="'+value.mobile+'" email_id="'+value.email_id+'" joined_on="'+value.email_id+'" member_count="'+value.membar_count+'" data-toggle="modal" data-target="#basicExampleModal"></i>';
+								html +='<i class="fas fa-user user_details fa-2x text-gray-300" mobile="'+value.mobile+'" email_id="'+value.email_id+'" joined_on="'+value.joined_on+'" member_count="'+value.membar_count+'" data-toggle="modal" data-target="#basicExampleModal"></i>';
 								html +='</div>';
 								html +='</div>';
 								html += '<div class="text-xs font-weight-bold text-primary mb-1">';
 								html += '<a href="payment_log.php?id='+value.id+'&name='+value.name+'">Transaction history</a><br/>';
 								html += '<a href="purchase_log.php?id='+value.id+'&name='+value.name+'">Purchase history</a><br/>';
-								html += '<span>User count - '+value.membar_count+'</span>';
+								html += '<span>User count : '+value.membar_count+'</span>';
 								html +=  '</div>';
 
 								html += '</div>';
@@ -129,9 +129,9 @@ $(document).ready(function(){
 	    var html = '';
 	    $("#user_details").html('');
 	    console.log($(this).attr('mobile'));
-		html += '<p class="mb-1">Mobile: '+$(this).attr('mobile')+'</p>';
-		html += '<p class="mb-1">Email: '+$(this).attr('email_id')+'</p>';
-		html += '<p class="mb-1">Joined on: '+$(this).attr('joined_on')+'</p>';
+		html += '<p class="mb-1 font-weight-bold">Mobile: </p><p class="font-weight-normal">'+$(this).attr('mobile')+'</p>';
+		html += '<p class="mb-1 font-weight-bold">Email: </p><p class="font-weight-normal">'+$(this).attr('email_id')+'</p>';
+		html += '<p class="mb-1 font-weight-bold">Joined on: </p><p class="font-weight-normal">'+$(this).attr('joined_on')+'</p>';
 	    $("#user_details").html(html);
 
 	    $(modalId).modal('show');

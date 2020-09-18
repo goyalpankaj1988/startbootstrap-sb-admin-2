@@ -67,7 +67,7 @@ $layercount = 1;
                         <div class="text-xs font-weight-bold text-primary mb-1">
                           <a  href="<?php echo 'payment_log.php?id='.$value['user_id']['_id'].'&name='.$value['user_id']['name'];?>">Transaction history</a><br/>
                           <a href="<?php echo 'purchase_log.php?id='.$value['user_id']['_id'].'&name='.$value['user_id']['name'];?>">Purchase history</a><br/>
-                          <span>User count - <?php echo $value['user_id']['membar_count'];?></span>
+                          <span>User count : <?php echo $value['user_id']['membar_count'];?></span>
                         </div>
 
                       </div>
