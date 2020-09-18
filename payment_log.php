@@ -62,6 +62,8 @@ include(__DIR__."/controller/payment_log.php");
                     <th>Paid On</th>
                     <th>Transaction id</th>
                     <th>Remark</th>
+                    <th>Account Number</th>
+                    <th>IFSC</th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -70,6 +72,8 @@ include(__DIR__."/controller/payment_log.php");
                     <th>Paid On</th>
                     <th>Transaction id</th>
                     <th>Remark</th>
+                    <th>Account Number</th>
+                    <th>IFSC</th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -79,7 +83,9 @@ include(__DIR__."/controller/payment_log.php");
                     echo '<tr><td>'.$value['amount'].'</td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
                     echo '<td>'.$value['miscellaneous'][0]['transaction'].'</td>';
-                    echo '<td>'.$value['miscellaneous'][0]['remark'].'</td></tr>';
+                    echo '<td>'.$value['miscellaneous'][0]['remark'].'</td>';
+                    echo '<td>'.$value['miscellaneous'][0]['account_number'].'</td>';
+                    echo '<td>'.$value['miscellaneous'][0]['ifsc'].'</td></tr>';
                     
                   }
                 ?>  

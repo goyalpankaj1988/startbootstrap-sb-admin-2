@@ -9,15 +9,20 @@ $( "#add_payment" ).submit(function( event ) {
         amount = $form.find( "input[name='amount']" ).val(),
         transaction= $form.find( "input[name='transaction']" ).val(),
         remark= $form.find( "textarea[name='remark']" ).val(),
+        account_number= $form.find( "input[name='account_number']" ).val(),
+        ifsc= $form.find( "input[name='ifsc']" ).val(),
       url = $form.attr( "action" );
         data = {
             "purcheser_id":purcheser_id,
             "amount":amount,
             "miscellaneous":{
                 "transaction":transaction,
-                "remark":remark
+                "remark":remark,
+                "account_number":account_number,
+                "ifsc":ifsc
             }
         }
+        // console.log(data)
     //   console.log(amount, transaction, remark,url,purcheser_id,paying_amount)
    
     // Send the data using post

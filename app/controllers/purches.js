@@ -21,6 +21,7 @@ exports.panding_amount_paid_payment = async function(req, res) {
             "amount":amount,
             "miscellaneous":miscellaneous
         }
+        console.log(data)
         panding_amount_paid_payment_add(data)
         .then(function(values){
             res.status(messages.status.OK).json({"message":"amount paid succesfully"});

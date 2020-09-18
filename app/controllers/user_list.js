@@ -16,6 +16,7 @@ exports.user_list = async function(req, res) {
         getuser_list(data)
         .then(function(values){
             let resultData = []
+            // console.log(values)
             for (i=0; i<values.length; i++){
                 data_array = {
                     // "role":values[i].role,
@@ -24,8 +25,11 @@ exports.user_list = async function(req, res) {
                     "earned_amonut":values[i].earned_amonut,
                     "paid_amonut":values[i].paid_amonut,
                     "created_time":values[i].created_time,
+                    "account_number":values[i].account_number,
+                    "ifsc":values[i].ifsc,
                     "_id":values[i]._id
                 }
+                // console.log(data_array)
                 resultData.push(data_array)
             }
             res.status(messages.status.OK).json(resultData);

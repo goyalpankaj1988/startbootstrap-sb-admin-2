@@ -31,6 +31,8 @@ class Utils
 	   curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
 	   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	   curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+	   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
+	   curl_setopt($ch, CURLOPT_TIMEOUT, 10); //timeout in seconds
 	  
 	   // EXECUTE:
 	   try{

@@ -7,6 +7,8 @@ include("sidebar.php");
 $purchesar_id = $_GET['id'];
 $purchesar_name = $_GET['name'];
 $paying_amount = $_GET['amount'];
+$account_number = $_GET['account_number'];
+$ifsc = $_GET['ifsc'];
 
 
 ?>
@@ -51,6 +53,15 @@ $paying_amount = $_GET['amount'];
                   <label for="exampleInputEmail1">Amount *</label>
                   <input type="number" class="form-control form-control-user" id="pay_amount" min="0" max="<?php echo $paying_amount; ?>"  step=".01" name="amount" placeholder="Pay amount" value="<?php echo $paying_amount; ?>" required>
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Account number *</label>
+                  <input type="text" class="form-control form-control-user" id="account_number" name="account_number" placeholder="Account number" value="<?php echo $account_number; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">IFSC *</label>
+                  <input type="text" class="form-control form-control-user" id="ifsc" name="ifsc" placeholder="IFSC" value="<?php echo $ifsc; ?>" required>
+                </div>
+               
                 <div class="form-group">
                   <label for="exampleInputEmail1">Transaction id *</label>
                   <input type="text" class="form-control form-control-user" id="transaction_id" name="transaction" placeholder="Transaction id" required>

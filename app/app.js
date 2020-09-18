@@ -13,8 +13,8 @@ var admin_api_list = require('./routes/admin_api_list');
 var app = express();
 
 var mongoose = require('mongoose');
-//var mongoDB = 'mongodb://localhost:27017/mlm';
-var mongoDB = 'mongodb+srv://pankaj_test:pankaj_test@cluster0.jaqcz.mongodb.net/mlm?retryWrites=true&w=majority'
+var mongoDB = 'mongodb://localhost:27017/mlm';
+// var mongoDB = 'mongodb+srv://pankaj_test:pankaj_test@cluster0.jaqcz.mongodb.net/mlm?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
