@@ -79,7 +79,7 @@ function isvalidform()
 		$("#password").addClass('border border-danger');
 		$("#cpassword").addClass('border border-danger');
 	}
-	if ($("#reference_hidden").val() == " ") {
+	if ($("#reference_hidden").val() == "") {
 
 		error += 'please add reference from';
 		$("#reference").addClass('border border-danger');

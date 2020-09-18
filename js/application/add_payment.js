@@ -27,9 +27,16 @@ $( "#add_payment" ).submit(function( event ) {
    
     // Send the data using post
     var posting = $.post( url, data );
-   
+    $('.btn-success').hide()
+    // $('#purchase_button').hide();
+    
+    $('.spinner-border').show();  
+    
     // Put the results in a div
     posting.done(function( data ) {
         window.location.href = "user_list.php";
     });
+    posting.fail(function() {
+        window.location.href = "add_payment.php";
+    })
   });

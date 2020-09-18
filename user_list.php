@@ -65,7 +65,10 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
-                    <th>Refrance by</th>
+                    <?php if($_SESSION['user']['role']=='admin'){?>
+                    <th>Reference by</th>
+                    <?php }?>
+                    
                   </tr>
                 </thead>
                 <tfoot>
@@ -79,7 +82,10 @@ include(__DIR__."/controller/user_list.php");
                     <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
-                    <th>Refrance by</th>
+                    <?php if($_SESSION['user']['role']=='admin'){?>
+                    <th>Reference by</th>
+                    <?php }?>
+                    
                   </tr>
                 </tfoot>
                 <tbody>
@@ -128,7 +134,10 @@ include(__DIR__."/controller/user_list.php");
                       <!-- <i class="fa-twitter-square"></i> -->
                     </span></a></td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
-                    echo '<td><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network">'.$value['user_ref_id']['name'].'</a></td></tr>';
+                    if($_SESSION['user']['role']=='admin'){
+                      echo '<td><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network">'.$value['user_ref_id']['name'].'</a></td>';
+                    }
+                    echo '</tr>';
                   }
                 ?> 
                  

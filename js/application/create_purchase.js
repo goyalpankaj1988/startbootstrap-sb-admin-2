@@ -90,7 +90,7 @@ $('body').on('click','#purchase_button',function(){
         "amount":t_amount
     }
     
-    $.post( "controller/add_purchase.php",data )
+        $.post( "controller/add_purchase.php",data )
         .done(function(res) {
             window.location.href = "user_list.php";
         })

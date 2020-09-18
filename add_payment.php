@@ -74,6 +74,9 @@ $ifsc = $_GET['ifsc'];
                 <button type="submit" id="register" class="btn btn-success float-right">Pay amount</button> 
                 
               </form>
+              <div class="d-flex align-items-center" >
+        <div class="spinner-border ml-auto" style="display:none" role="status" aria-hidden="true"></div>
+      </div>
               <!-- <hr> -->
               <!-- <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
