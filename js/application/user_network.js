@@ -58,11 +58,18 @@ $(document).ready(function(){
 								html += '<div class="card-body">';
 								html += '<div class="row no-gutters align-items-center">';
 								html += '<div class="col mr-2">';
-								html += '<div class="h5 mb-0 font-weight-bold text-gray-800 user_network text-capitalize" user_id="'+value.id+'" user_name="'+value.name+'" layer_count="'+next_layer+'">'+value.name+'</div>';
+								html +='<div class="h5 font-weight-bold text-gray-800 row no-gutters align-items-center user_network text-capitalize"user_id="'+value.id+'" user_name="'+value.name+'" layer_count="'+next_layer+'">'+value.name;
+								html +='<div class="col mr-2">';
+								
+								html +='</div>';
+								html +='<div class="col-auto">';
+								html +='<i class="fas fa-user user_details fa-2x text-gray-300" mobile="'+value.mobile+'" email_id="'+value.email_id+'" joined_on="'+value.email_id+'" member_count="'+value.membar_count+'" data-toggle="modal" data-target="#basicExampleModal"></i>';
+								html +='</div>';
+								html +='</div>';
 								html += '<div class="text-xs font-weight-bold text-primary mb-1">';
-								html += '<a href="">Transaction history</a><br/>';
-								html += '<a href="">Purchase history</a><br/>';
-								// html += '<span>User count - 2</span>';
+								html += '<a href="payment_log.php?id='+value.id+'&name='+value.name+'">Transaction history</a><br/>';
+								html += '<a href="purchase_log.php?id='+value.id+'&name='+value.name+'">Purchase history</a><br/>';
+								html += '<span>User count - '+value.membar_count+'</span>';
 								html +=  '</div>';
 
 								html += '</div>';
@@ -114,4 +121,20 @@ $(document).ready(function(){
 
 		
 	});
+
+	  $('body').on('click', '[data-toggle="modal"]', function() {
+	  // $('[data-toggle="modal"]').click(function() { 
+	    var modalId = $('#basicExampleModal');
+	    
+	    var html = '';
+	    $("#user_details").html('');
+	    console.log($(this).attr('mobile'));
+		html += '<p class="mb-1">Mobile: '+$(this).attr('mobile')+'</p>';
+		html += '<p class="mb-1">Email: '+$(this).attr('email_id')+'</p>';
+		html += '<p class="mb-1">Joined on: '+$(this).attr('joined_on')+'</p>';
+	    $("#user_details").html(html);
+
+	    $(modalId).modal('show');
+
+	  });
 });

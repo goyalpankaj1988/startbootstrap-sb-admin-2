@@ -20,8 +20,13 @@ if(isset($_SESSION['user']['token']))
 		if($count > 0)
 		{
 			foreach ($userNetworkArr as $key => $value) {
-				$userDetails['id'] = $value['user_id']['_id'];
-				$userDetails['name'] = $value['user_id']['name'];
+				$usrInfo = $value['user_id'];
+				$userDetails['id'] = $usrInfo['_id'];
+				$userDetails['name'] = $usrInfo['name'];
+				$userDetails['mobile'] = $usrInfo['mobile'];
+				$userDetails['email_id'] = $usrInfo['email_id'];
+				$userDetails['membar_count'] = $usrInfo['membar_count'];
+				$userDetails['joined_on'] = date("d-M-Y H:i:s", strtotime($usrInfo['created_time']));
 				$usrArr[] = $userDetails;
 			}
 		}	
