@@ -1,10 +1,18 @@
 const messages = require('../messages.json');
 exports.menu= async function(req, res) {
     if(req.role && req.name && req.user_id){
-        data = {
-            "User list":"user_list.php",
-            "User add":"add_user.php"
+        if(req.role=='admin'){
+            data = {
+                "User list":"user_list.php",
+                "User add":"add_user.php"
+            }
         }
+        else{
+            data = {
+                "User list":"user_list.php"
+            }
+        }
+        
         res.status(messages.status.OK).json(data);
     }
     else{

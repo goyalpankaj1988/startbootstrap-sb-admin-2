@@ -347,3 +347,14 @@ http://localhost:3000/api_list/purche_bill
     "user_ref_id" : ObjectId("5f64b767c88f7d41390d0f1a"),
     "__v" : 0
 }
+
+
+{
+    "_id" : ObjectId("5f5e119c611edf3636e1e3da"),
+    "product_name" : "Day Cream",
+    "quantity" : "20 gm",
+    "mrp" : 1000,
+    "dp" : 800,
+    "created_time" : ISODate("2020-09-13T12:33:32.552Z"),
+    "__v" : 0
+}
