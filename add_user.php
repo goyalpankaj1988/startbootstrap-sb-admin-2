@@ -81,7 +81,7 @@ include("sidebar.php");
                 </div>
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference from" required>
+                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference from" autocomplete="off" required>
                     <div id="reference_list" style="display: none"></div>
                   </div>
                   <div class="col-sm-6">
