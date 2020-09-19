@@ -256,7 +256,8 @@ function getUserNetwork(id){
     return new Promise(function(resolve, reject) {
         user_ref
         .find({
-            "user_ref_id":id
+            "user_ref_id":id,
+            "user_id":{$ne:new mongo.ObjectID("5f64b767c88f7d41390d0f1a")}
         })
         .populate('user_id')
         .limit(4)
