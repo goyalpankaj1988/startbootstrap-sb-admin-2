@@ -62,7 +62,7 @@ include(__DIR__."/controller/comission_distribution.php");
                     <th>Earned amount</th>
                     <th>Comission %</th>
                     <th>Purchased On</th>
-                    <th>View Bill</th>
+                    
                   </tr>
                 </thead>
                 <tfoot>
@@ -72,29 +72,30 @@ include(__DIR__."/controller/comission_distribution.php");
                     <th>Earned amount</th>
                     <th>Comission %</th>
                     <th>Purchased On</th>
-                    <th>View Bill</th>
+                    
                   </tr>
                 </tfoot>
                 <tbody>
                 <?php
-                
+                  $array_count = count($ProductList_Array);
                   foreach($ProductList_Array as $key=>$value){
-                    echo '<tr><td>'.$value['agent_id']['name'].'</td>';
+                    echo '<tr><td class="text-capitalize">'.$value['agent_id']['name'].'</td>';
                     echo '<td >'.$value['purchaser_level'].'</td>';
                     echo '<td >'.$value['commision_amount'].'</td>';
                     echo '<td >'.$value['commision_per'].'</td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
-                    echo '<td >
-                    <a href="view_bill.php?id='.$value['purches_id'].'" title="View Bill">
-                      <span class="icon fa-2x text-yellow-300">
+                  //   echo '<td  >
+                  //   <a href="view_bill.php?id='.$value['purches_id'].'" title="View Bill">
+                  //     <span class="icon fa-2x text-yellow-300">
                         
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
-                        </svg>
+                  //       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  //         <path fill-rule="evenodd" d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                  //       </svg>
                         
-                        <!-- <i class="fa-twitter-square"></i> -->
-                      </span></a>
-                  </td></tr>';
+                  //       <!-- <i class="fa-twitter-square"></i> -->
+                  //     </span></a>
+                  // </td>';
+                    echo '</tr>';
                   }
                 ?>  
                 
