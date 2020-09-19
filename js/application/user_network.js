@@ -1,11 +1,12 @@
 
-$(document).ready(function(){
-
 	
 	$('body').on('click', '.user_network', function(event) {
+		// console.log($(this))
+		// console.log(event)
+		// console.log(event.target.nodeName)
 		var layer_count = parseInt($(this).attr('layer_count'));
 		var layer_class ='layer_'+layer_count;
-		if( layer_count < 3 )
+		if( layer_count < 3 && event.target.nodeName=='DIV')
 		{
 	    
 
@@ -124,6 +125,7 @@ $(document).ready(function(){
 
 	  $('body').on('click', '.userinformation', function() {
 	  // $('[data-toggle="modal"]').click(function() { 
+		event.preventDefault();
 	    var modalId = $('#userinfoModal');
 	    
 	    var html = '';
@@ -137,4 +139,3 @@ $(document).ready(function(){
 	    $(modalId).modal('show');
 
 	  });
-});
