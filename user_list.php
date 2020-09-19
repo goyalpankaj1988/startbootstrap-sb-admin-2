@@ -95,16 +95,16 @@ include(__DIR__."/controller/user_list.php");
                   </tr>
                 </tfoot>
                 <tbody>
-		<?php
+		            <?php
                foreach($ProductList_Array as $key=>$value){
                     $pendingA = $value['earned_amonut'] - (float)$value['paid_amonut'];
-		    $pendingA = round($pendingA,2);
+		                $pendingA = round($pendingA,2);
                     echo '<tr><td class="text-capitalize"><img class="mr-2 userinfo" title = "User details" mobile="'.$value['mobile'].'" email_id="'.$value['email_id'].'"
                     address1="'.$value["address1"].'" address2="'.$value["address2"].'" name="'.$value["name"].'" zip="'.$value['zipcode'].'" state="'.$value['state'].'" country="'.$value['country'].'" account="'.$value['account_number'].'" ifsc="'.$value['ifsc'].'" data-toggle="modal" data-target="#userdetailsModal" src="img/select-user.png" style="height: 16px;width: 16px;" ></img><a href="user_network.php?id='.$value['_id'].'&name='.$value['name'].'" title="User network">'.$value['name'].'</a></td>';
                     echo '<td ><a href="comission_log.php?id='.$value['_id'].'&name='.$value['name'].' " title = "Comission log">'.$value['earned_amonut'].'</a></td>';
                     echo '<td ><a href="payment_log.php?id='.$value['_id'].'&name='.$value['name'].'" title = "Payment log">'.$value['paid_amonut'].'</a></td>';
                     echo '<td >';
-                    if($_SESSION['user']['role']=='admin'){
+                    if($_SESSION['user']['role']=='admin' && $value['first_purches']=='Y' && $pendingA>0){
                       echo '<a href="add_payment.php?id='.$value['_id'].'&name='.$value['name'].'&amount='.$pendingA.'&account_number='.$value['account_number'].'&ifsc='.$value['ifsc'].'" title="Pay"><span class="icon  text-balck-300">
                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gift-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3z"/>
@@ -134,12 +134,12 @@ include(__DIR__."/controller/user_list.php");
                     
                     }
                     echo '<td><a href="purchase_log.php?id='.$value['_id'].'&name='.$value['name'].'" title="Purchase history" >
-                    <span class="icon fa-2x text-yellow-300">
+                    <span class="icon  text-yellow-300">
                       
                       
                       <i class="fas fa-history"></i>
                       <!-- <i class="fa-twitter-square"></i> -->
-                    </span></a></td>';
+                    </span></a><span class="ml-1" title="Total Purchase Amonut">'.$value['total_purchase_amonut'].'</span></td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
                     if($_SESSION['user']['role']=='admin'){
                     echo '<td class="text-capitalize"><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network" >'.$value['user_ref_id']['name'].'</a></td>';
@@ -178,7 +178,8 @@ include(__DIR__."/controller/user_list.php");
 </div
 
 
-<?php include("footer.php");?>
+<?php include("footer.php"); ?>
+
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="js/demo/datatables-demo.js"></script>

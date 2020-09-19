@@ -21,6 +21,7 @@ userSchema = new Schema (
         ifsc             : {type: String, required: true},
         status          : {type: String, enum:['Y','N'], default: 'Y'},
         earned_amonut   : {type:Number, default:0},
+        total_purchase_amonut   : {type:Number, default:0},
         paid_amonut     : {type:Number, default:0},
         user_ref_id :{type: Schema.Types.ObjectId, ref: 'user'},
         first_purches :{type: String, enum:['Y','N'], default: 'N'},

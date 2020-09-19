@@ -51,7 +51,7 @@ include("sidebar.php");
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an User!</h1>
               </div>
-              <form id="user" class="user" action="" method="POST">
+              <form id="user" class="user" action="" method="POST" autocomplete="false">
                 <input type="hidden" id="role" name="role" value="user">
                 <input type="hidden" id="reference_hidden" name="reference_hidden" value="">
                 <input type="hidden" id="valid_username" name="valid_username" value="false">

@@ -179,7 +179,7 @@ exports.buy_product = async function(req, res) {
 
         promises[0]=add_purches_history_table(data)
         promises[1]=getRefUserList(req.body.purcheser_id)
-        promises[2]=updateFirstPurches(req.body.purcheser_id)
+        promises[2]=updateFirstPurches(req.body.purcheser_id, amount)
         
         
 
@@ -224,12 +224,13 @@ function add_purches_history_table(data){
         });
     });
 }
-function updateFirstPurches(id){
+function updateFirstPurches(id, amount){
     return new Promise(function(resolve, reject) {
         user.findByIdAndUpdate({
             "_id":new mongo.ObjectID(id)
         },{
-            $set:{"first_purches":"Y"}
+            $set:{"first_purches":"Y"},
+            $inc:{total_purchase_amonut:amount}
              
         })
         .exec(function (err,result1) {

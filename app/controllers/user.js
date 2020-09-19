@@ -227,7 +227,6 @@ function search_userByName(keyword) {
                 $match : { 
                     results : true,
                     "status":"Y",
-                    "first_purches":"Y",
                     "membar_count":{$lt:4}
                     
                 }
