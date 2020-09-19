@@ -33,7 +33,7 @@ switch($response['code'])
 			}
 
 		}
-		$path = '../login.php';
+		$path = 'login.php';
 
 
 

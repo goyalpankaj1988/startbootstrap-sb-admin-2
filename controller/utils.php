@@ -46,7 +46,9 @@ class Utils
 	   }
 	   $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 	   $this->validateApiRespnse($httpcode);
-	   if(!$result){die("Connection Failure");}
+	   if(!$result){
+		header("Location: login.php");
+	   }
 	   curl_close($curl);
 	   $response =array();
 	   $response['code'] = $httpcode;
