@@ -44,7 +44,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                     
                     <!-- <i class="fa fa-globe"></i>  -->
                     AdminLTE, Inc.
-                    <small class="text-right">Date: 2/10/2014</small>
+                    <!-- <small class="text-right">Date: 2/10/2014</small> -->
                   </h2>
                 </div>
                 <!-- /.col -->
