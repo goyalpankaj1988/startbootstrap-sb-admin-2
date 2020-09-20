@@ -1,9 +1,26 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+function getIP(){
+	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+	} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	} else {
+		$ip = $_SERVER['REMOTE_ADDR'];
+	}
+	return $ip;
+}
+
 class Utils
 {
 	private $back_url = 'http://localhost:3000';
 
+	
+
 	function callAPI($method, $url, $data,$token = ''){
+		echo $a = getIP();
 	   $url =$this->back_url.$url;
 	   $curl = curl_init();
 	   switch ($method){
