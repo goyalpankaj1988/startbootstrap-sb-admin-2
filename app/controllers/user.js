@@ -43,7 +43,7 @@ exports.add_user = async function(req, res) {
         }
         check_user_ref(ref_id)
         .then(function(values){
-            if(values!=null && values.first_purches=='Y' && values.membar_count<4){
+            if(values!=null  && values.membar_count<4){
                 // console.log(values)
                 let promises = [];
                 promises[0]=add_user_table(data,password)
