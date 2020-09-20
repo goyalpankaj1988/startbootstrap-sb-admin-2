@@ -358,3 +358,8 @@ http://localhost:3000/api_list/purche_bill
     "created_time" : ISODate("2020-09-13T12:33:32.552Z"),
     "__v" : 0
 }
+
+
+{"_id":{"$oid":"5f5d137ac7ab285533b75277"},"role":"admin","status":"Y","user_name":"admin","name":"Admin","email_id":"admin","created_time":{"$date":{"$numberLong":"1599935354736"}},"password":"$2a$08$3aexz.hoE6YghH4CxP/af.KK.zaSxb3QA0TbI2abS.KKyEpsAc6lu","__v":{"$numberInt":"0"},"user_ref_id":{"$oid":"5f5d137ac7ab285533b75277"},"earned_amonut":{"$numberDecimal":"0"},"paid_amonut":{"$numberDecimal":"0"},"total_purchase_amonut":{"$numberDecimal":"0"},"membar_count":{"$numberDecimal":"0"},"first_purches":"N","address1":"90","mobile":"8989898989","zipcode":"90","state":"Karnataka","country":"India","account_number":"9090","ifsc":"909"}
+
+{"_id":{"$oid":"5f5d137bc7ab285533b75278"},"user_id":{"$oid":"5f5d137ac7ab285533b75277"},"user_ref_id":{"$oid":"5f5d137ac7ab285533b75277"},"__v":{"$numberInt":"0"}}
