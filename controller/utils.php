@@ -20,8 +20,7 @@ class Utils
 	
 
 	function callAPI($method, $url, $data,$token = ''){
-		echo $a = getIP();
-	   $url =$this->back_url.$url;
+		$url =$this->back_url.$url;
 	   $curl = curl_init();
 	   switch ($method){
 	      case "POST":
