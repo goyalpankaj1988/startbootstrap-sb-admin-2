@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
 
-$('body').on('click', 'button#register', function(event) {
+$( "#user" ).submit(function( event ) {
     
 
  	var validf = isvalidform();
@@ -79,7 +79,7 @@ function isvalidform()
 		$("#password").addClass('border border-danger');
 		$("#cpassword").addClass('border border-danger');
 	}
-	if ($("#reference_hidden").val() == "") {
+	if (!$("#reference_hidden").val()) {
 
 		error += 'please add reference from';
 		$("#reference").addClass('border border-danger');
@@ -128,7 +128,7 @@ function isvalidform()
 
 	$("#reference").keypress(function(event){
 		var ref_name =$("#reference").val(); 
-		$("#reference_hidden").val(' ');
+		$("#reference_hidden").val('');
 		if(ref_name.length >= 3)
 		{
 			
