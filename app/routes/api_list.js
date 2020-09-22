@@ -59,5 +59,10 @@ router.post('/product_list',
     product.list_product
 );
 
+router.put('/update_password',
+    [validate_client_token],
+    user.update_user_password
+);
+
 
 module.exports = router;
