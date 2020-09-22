@@ -144,9 +144,16 @@ function isvalidform()
 		            var obj = jQuery.parseJSON(response);
 		            console.log(obj);
 		            var html = '';
-					$.each(obj, function(key,value) {
-					  html += '<a class="dropdown-item border border-success reflist" id='+ key +' value='+ value +'>'+ value +'</a>';
-					});
+	             	if ( obj.length == 0 ) {
+				        console.log("NO DATA!")
+				    }
+				    else
+				    {
+				    	$.each(obj, function(key,value) {
+						  html += '<a class="dropdown-item border border-success reflist" id='+ key +' value='+ value +'>'+ value +'</a>';
+						});
+				    }
+					
 					
 					$("#reference_list").empty();
 					$("#reference_list").append(html);
@@ -157,9 +164,11 @@ function isvalidform()
 	     
 	});
 
-	$("#validateemail").click(function(event){
+	$("#email").change(function(event){
 		var email =$("#email").val(); 
-		$('#email_valid').html(' ');
+		$('#valid_username').val(false);
+		$('#email_valid').html('');
+		$("#email").removeClass('border border-danger');
 		$.ajax({
 		        url:"controller/checkusername.php",
 		        data: { 
@@ -183,9 +192,7 @@ function isvalidform()
     	});
 	     
 	});
-	$("#reference").keypress(function(event){
-		$("#reference_hidden").val( );
-	});
+	
 	$('body').on('click', 'a.reflist', function() {
 		var text_name = $(this).attr('value'); 
 		console.log(text_name);
