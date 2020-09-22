@@ -1,23 +1,24 @@
 <?php
 
-function getIP(){
-	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-		$ip = $_SERVER['HTTP_CLIENT_IP'];
-	} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} else {
-		$ip = $_SERVER['REMOTE_ADDR'];
-	}
-	return $ip;
-}
+
 
 class Utils
 {
 	private $back_url = 'http://localhost:3000';
 
-	
+	function getIP(){
+		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		return $ip;
+	}
 
 	function callAPI($method, $url, $data,$token = ''){
+		$ip = $this->getIP();
 		$url =$this->back_url.$url;
 	   $curl = curl_init();
 	   switch ($method){
@@ -40,7 +41,8 @@ class Utils
 	   
 	    $header =  array(
 	      'Content-Type: application/json',
-	      'token: '.$token
+		  'token: '.$token,
+		  'ip: '.$ip
 	   );
 	   curl_setopt($curl, CURLOPT_HTTPHEADER,$header);
 	   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
