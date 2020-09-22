@@ -4,6 +4,7 @@ var menu = require('../controllers/menu');
 var user_list = require('../controllers/user_list');
 var purches =  require('../controllers/purches');
 var user = require('../controllers/user');
+var product = require('../controllers/product')
 // var client_abstract = require('../controllers/client_abstract');
 var validate_client_token = require('../middleware/validate_client');
 
@@ -46,6 +47,16 @@ router.post('/user_network',
 router.post('/panding_amount_paid_payment_list',
     [validate_client_token],
     purches.panding_amount_paid_payment_list
+);
+
+router.post('/buy_product',
+    [validate_client_token],
+    purches.buy_product
+);
+
+router.post('/product_list',
+    [validate_client_token],
+    product.list_product
 );
 
 

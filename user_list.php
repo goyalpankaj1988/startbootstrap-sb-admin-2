@@ -68,9 +68,7 @@ include(__DIR__."/controller/user_list.php");
                     <th>Earned amount</th>
                     <th>Paid amount</th>
                     <th>Pending amount</th>
-                    <?php if($_SESSION['user']['role']=='admin'){?>
                     <th>Purchase</th>
-                    <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
                     <?php if($_SESSION['user']['role']=='admin'){?>
@@ -84,9 +82,7 @@ include(__DIR__."/controller/user_list.php");
                     <th>Earned amount</th>
                     <th>Paid amount</th>
                     <th>Pending amount</th>
-                    <?php if($_SESSION['user']['role']=='admin'){?>
                     <th>Purchase</th>
-                    <?php }?>
                     <th>Purchase history</th>
                     <th>Joined On</th>
                     <?php if($_SESSION['user']['role']=='admin'){?>
@@ -121,7 +117,7 @@ include(__DIR__."/controller/user_list.php");
                     //   echo '</a>';
                     // }
                     echo '</td>';
-                    if($_SESSION['user']['role']=='admin'){
+                    // if($_SESSION['user']['role']=='admin'){
                       echo '<td>
                     <a href="create_purchase.php?id='.$value['_id'].'&name='.$value['name'].' " title="Create purchase" >
                       <span class="icon fa-2x text-yellow-300">
@@ -135,7 +131,7 @@ include(__DIR__."/controller/user_list.php");
                     </a>
                     </td>';
                     
-                    }
+                    // }
                     echo '<td><a href="purchase_log.php?id='.$value['_id'].'&name='.$value['name'].'" title="Purchase history" >
                     <span class="icon  text-yellow-300">
                       
