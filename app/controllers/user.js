@@ -135,7 +135,57 @@ exports.get_usernetwork = async function(req, res) {
         return;
     }
 };
+exports.update_user_password = async function(req, res) {
+  
+  if(req.role && req.name && req.user_id){
+        // let user_id = new mongo.ObjectID(req.user_id);
+                
+        let password        =req.body.password
 
+       
+            updatePassword(req.body.user_id, password)
+            .then(function(values){
+                res.status(messages.status.OK).json({'msg':'success'});
+                return;
+            })
+            .catch(function(err){
+                console.log(err)
+                res.status(messages.status.dbError).json({ errors: err });
+                return;
+            })
+            
+        
+        
+        
+        
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+function updatePassword(id, password){
+    return new Promise(function(resolve, reject) {
+        var new_user = new user();
+        let password_new = new_user.generateHash(password);
+        console.log(password_new,id);
+        user.findByIdAndUpdate({
+            "_id":new mongo.ObjectID(id)
+        },{
+            $set:{"password":password_new}
+             
+        })
+        .exec(function (err,result1) {
+            if(err){
+                console.log(err);
+                reject(err)
+            }
+            else{
+                resolve(result1)
+            }
+        })
+    });
+}
 
 function add_user_table(data,password){
     return new Promise(function(resolve, reject) {
@@ -170,6 +220,7 @@ function check_user_ref(user_ref_id){
         })
     })
 }
+
 
 function adde_user_ref(user_id,user_ref_id){
     return new Promise(function(resolve, reject) {

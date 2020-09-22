@@ -48,5 +48,10 @@ router.post('/panding_amount_paid_payment_list',
     purches.panding_amount_paid_payment_list
 );
 
+router.put('/update_password',
+    [validate_client_token],
+    user.update_user_password
+);
+
 
 module.exports = router;
