@@ -60,56 +60,70 @@ include("sidebar.php");
 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="exampleInputEmail1" class="text-dark">First name</label>
                     <input type="text" class="form-control form-control-user required" id="fname" name="fname" placeholder="First Name" required>
                   </div>
                   <div class="col-sm-6">
+                    <label for="exampleInputEmail1" class="text-dark">Last name</label>
                     <input type="text" class="form-control form-control-user" id="lname" name="lname" placeholder="Last Name" required>
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="exampleInputEmail1" class="text-dark">Email id</label>
                   <input type="email" class="form-control form-control-user required" id="email" name="email" placeholder="Email Address" required>
                   <span id="email_valid"></span>
                   <a href="#" class="ml-2" id="validateemail">check avalability</a>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="exampleInputEmail1" class="text-dark">Password</label>
                     <input type="password" class="form-control form-control-user required" id="password" name="password" placeholder="Password" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user required" id="cpassword" name="cpassword" placeholder="Repeat Password" required>
+                    <label for="exampleInputEmail1" class="text-dark">Confirm Password</label>
+                    <input type="password" class="form-control form-control-user required" id="cpassword" name="cpassword" placeholder="Confirm Password" required>
                   </div>
                 </div>
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference from" autocomplete="off" required>
+                    <label for="exampleInputEmail1" class="text-dark">Reference from email id</label>
+                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference from email" autocomplete="off" required>
+                    <small id="emailHelp" class="form-text text-muted">Please search by reference user's email id</small>
                     <div id="reference_list" style="display: none"></div>
                   </div>
                   <div class="col-sm-6">
+                    <label for="exampleInputEmail1" class="text-dark">Mobile no</label>
                     <input type="number" class="form-control form-control-user required" id="mobile" name="mobile" min="10" maxlength="10" placeholder="mobile" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="exampleInputEmail1" class="text-dark">Account number</label>
                     <input type="number" class="form-control form-control-user required" id="account_number" name="account_number" placeholder="account number" required>
                   </div>
                   <div class="col-sm-6">
+                    <label for="exampleInputEmail1" class="text-dark">IFSC code</label>
                     <input type="text" class="form-control form-control-user required" id="ifsc" name="ifsc" placeholder="ifsc code" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="exampleInputEmail1" class="text-dark">Address line 1</label>
                     <input type="text" class="form-control form-control-user required" id="address1" name="address1" placeholder="address line 1" required>
                   </div>
                   <div class="col-sm-6">
+                    <label for="exampleInputEmail1" class="text-dark">Address line 2</label>
                     <input type="text" class="form-control form-control-user" id="address2 " placeholder="address line 2">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="exampleInputEmail1" class="text-dark">Postal code</label>
                     <input type="number" class="form-control form-control-user required" id="zipcode" name="zipcode" placeholder="Postal code" required>
                   </div>
                   <div class="col-sm-6">
                     <!-- <input type="text" class="form-control form-control-user" id="state " placeholder="State"> -->
+                    <label for="exampleInputEmail1" class="text-dark">State</label>
                     <select name="state" id="state" class="form-control required">
                       <option value="">Select state</option>
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -154,6 +168,7 @@ include("sidebar.php");
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <!-- <input type="text" class="form-control form-control-user" id="country" placeholder="Country"> -->
+                    <label for="exampleInputEmail1" class="text-dark">Country</label>
                     <select name="country" id="country" class="form-control" required>
                       <option value="India" selected="selected">India</option>
                     </select>
@@ -161,17 +176,17 @@ include("sidebar.php");
                  
                 </div>
                 
-                <button type="button" id="register" class="btn btn-primary btn-user btn-block">Register Account</button> 
+                <button type="submit" id="register" class="btn btn-primary btn-user btn-block">Register Account</button> 
                 <hr>
                 
                 
               </form>
               <hr>
               <!-- <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                <a class="label" href="forgot-password.html">Forgot Password?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
+                <a class="label" href="login.html">Already have an account? Login!</a>
               </div>
             </div> -->
           </div>
