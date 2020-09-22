@@ -12,7 +12,8 @@ if(isset($_SESSION['user']['token']))
       
 }
 else{
-    session_destroy();
+    $_SESSION['msg_error'] = 'Invalid request.';
+	
     $path = 'login.php';
     header("Location: ".$path);
 }

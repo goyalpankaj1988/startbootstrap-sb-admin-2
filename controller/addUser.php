@@ -3,7 +3,7 @@ require(__DIR__."/utils.php");
 session_start();
 // $error = false;
 // echo $path = __DIR__."\..\add_user.php";
-
+// print_r($_POST);exit;
 if(isset($_SESSION['user']['token']))
 {
 
@@ -16,23 +16,12 @@ if(isset($_SESSION['user']['token']))
 	  $data['name'] = $data['fname'].' '.$data['lname'];
 	  $token = $_SESSION['user']['token'];
 	  $response = $obj->callAPI("POST",$url,json_encode($data),$token);
-	  if($response['code'] == 200)
-	  {
-	  	$result = json_decode($response['result'],true);
-	  	echo 'success';
-
-	  }
-	  else
-	  {
-	  	echo 'fail';
-	  }
-	  	
+	  $_SESSION['msg_success'] = 'User added done successfully.';
+    
 }
-else
-{
-	$error = true;
-	echo 'fail';
-	header("Location: ../login.php");
-
+else{
+	$_SESSION['msg_error'] = 'Invalid request.';
+	$path = 'login.php';
+	header("Location: ".$path);
 }
 ?>

@@ -9,6 +9,8 @@ if(isset($_SESSION['user']['token']))
       $ProductList_Array = json_decode($response['result'],true);
 }
 else{
+    $_SESSION['msg_error'] = 'Invalid request.';
+	
     $path = 'login.php';
     header("Location: ".$path);
 }

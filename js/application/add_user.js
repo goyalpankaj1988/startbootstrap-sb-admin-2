@@ -3,33 +3,35 @@ $(document).ready(function(){
 
 
 $( "#user" ).submit(function( event ) {
+	$('.spinner-border').show()
+	$('.btn-primary').hide()
     
-
- 	var validf = isvalidform();
+	event.preventDefault(); // avoid to execute the actual submit of the form.
+	 var validf = isvalidform();
+	 console.log(validf);
 	if(validf)
 	{
-		event.preventDefault(); // avoid to execute the actual submit of the form.
+		
 
 	    var form = $("#user");
 	    var url = "controller/addUser.php";
-	    
 	    $.ajax({
 	           type: "POST",
 	           url: url,
 	           data: form.serialize(), // serializes the form's elements.
 	           success: function(data)
 	           {
-	              if(data == 'success')
-	              {
 	              	window.location.href ='user_list.php';
-	              } 
+	               
 	           }
 	         });
 
 		}
 	else
 	{
-		
+		$('.spinner-border').hide()
+		$('.btn-primary').show()
+    
 	}
 	
 });

@@ -1,5 +1,14 @@
 <?php
 session_start();
+$msg_success = '';
+$msg_error = '';
+if(isset($_SESSION['msg_success'])){
+  $msg_success = $_SESSION['msg_success'];
+}
+if(isset($_SESSION['msg_error'])){
+  $msg_error = $_SESSION['msg_error'];
+}
+
 session_destroy();
 
 ?>
@@ -39,11 +48,28 @@ session_destroy();
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block"></div>
-              <div class="col-lg-6">
+               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">MLM</h1>
                   </div>
+                  <?php 
+
+                      if($msg_success!='')
+                      {
+                          echo '<div class="alert alert-success" role="alert">';
+                          echo $msg_success;
+                          echo '</div>';
+                      }
+                      if($msg_error!='')
+                      {
+                          echo '<div class="alert alert-danger" role="alert">';
+                          echo $msg_error;
+                          echo '</div>';
+                      }
+                    
+                  ?>
+             
                   <form class="user" action="controller\login_ae.php" method="post">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address..." required>

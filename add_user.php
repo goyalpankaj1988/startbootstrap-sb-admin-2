@@ -181,7 +181,10 @@ include("sidebar.php");
                 
                 
               </form>
-              <hr>
+              <div class="d-flex align-items-center" >
+				<div class="spinner-border ml-auto" style="display:none" role="status" aria-hidden="true"></div>
+			</div>
+      
               <!-- <div class="text-center">
                 <a class="label" href="forgot-password.html">Forgot Password?</a>
               </div>

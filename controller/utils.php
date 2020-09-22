@@ -52,31 +52,74 @@ class Utils
 	  
 	   // EXECUTE:
 	   try{
+			$error = false;
+			$result = curl_exec($curl);
+			$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+			switch ($httpcode) {
+				case 423:
+					$_SESSION['msg_error'] = 'Error Code : 423 please inform your admin.';
+					$error = true;
+					
+				break;
+				
+				case 424:
+					$_SESSION['msg_error'] = 'Unauthorized access';
+					$error = true;
+					
+				break;
+				
+				case 401:
+					$_SESSION['msg_error'] = 'Invalid request';
+					$error = true;
+					
+				break;
 
-	   		$result = curl_exec($curl);
+				case 404:
+					$_SESSION['msg_error'] = 'Page not found';
+					$error = true;
+					
+				break;
+				
+				case 200:
+					$error = false;
+					
+				break;
+				
+
+				
+				default:
+				$_SESSION['msg_error'] = 'Something is wrong';
+				$error = true;
+				
+
+
+			} 
+			curl_close($curl);
+				
+			if($error){
+				header("Location: login.php");
+				
+			}
+			else{
+				$response =array();
+				$response['code'] = $httpcode;
+				$response['result'] = $result;
+				return $response;
+			}
+	   
+			
 
 	   }
 	   catch(Exception $e)
 	   {
-	   	   
-	   }
-	   $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-	   $this->validateApiRespnse($httpcode);
-	   if(!$result){
+		$_SESSION['msg_error'] = 'Exception happened';
 		header("Location: login.php");
 	   }
-	   curl_close($curl);
-	   $response =array();
-	   $response['code'] = $httpcode;
-	   $response['result'] = $result;
-	   return $response;
-
+	   
+	   
 	}
 
-	protected function validateApiRespnse($code)
-	{
-
-	}
+	
 
 
 }

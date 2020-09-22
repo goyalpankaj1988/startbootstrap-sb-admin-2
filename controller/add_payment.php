@@ -12,8 +12,12 @@ if(isset($_SESSION['user']['token']))
     $response = $obj->callAPI("POST",$url,json_encode($_POST),$token);
     // $ProductList_Array = json_decode($response['result'],true);
     echo $response['result'];
+    $_SESSION['msg_success'] = 'Payment done successfully.';
+    	
+    
 }
 else{
+    $_SESSION['msg_error'] = 'Invalid request.';
     $path = 'login.php';
     header("Location: ".$path);
 }
