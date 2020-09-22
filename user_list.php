@@ -39,6 +39,25 @@ include(__DIR__."/controller/user_list.php");
             <!-----<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>----->
           </div>
           <div class="card-body">
+            <?php 
+
+                if(isset($_SESSION['msg_success']))
+                {
+                     echo '<div class="alert alert-success" role="alert">';
+                     echo $_SESSION['msg_success'];
+                     unset($_SESSION['msg_success']);
+                     echo '</div>';
+                }
+                 if(isset($_SESSION['msg_error']))
+                {
+                     echo '<div class="alert alert-danger" role="alert">';
+                     echo $_SESSION['msg_error'];
+                     unset($_SESSION['msg_error']);
+                     echo '</div>';
+                }
+               
+            ?>
+            
             <!-- <div class="card-header py-3">
               
               <div class="box-tools">

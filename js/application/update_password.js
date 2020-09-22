@@ -1,42 +1,45 @@
 // Attach a submit handler to the form
-$(document).ready(function(){
-$( "#user_password" ).submit(function( event ) {
+$('body').on('submit', '#user', function() { 
  
-    // Stop form from submitting normally
     event.preventDefault();
-    
-    // Get some values from elements on the page:
-    var $form = $( this );
+    var error = '';
     var password = $("#password").val();
     var cpassword= $("#cpassword").val();
+    var user_id = $("#user_id").val();
     console.log(password);
     console.log(cpassword);
-    var data = {
-            "password":password
-        };
-    var user_id = $('#user_id').val();
-    var error = '';
-    if(!password)
+    if(password === cpassword)
     {
-        error += 'empty password';
+        
     }
-    if(!cpassword)
-    {
-        error += 'empty confirm password';
-    }
-    if(password != cpassword)
+    else
     {
         error += 'password and confirm password not same';
+
     }
-    if(error)
+    if(error != '')
     {
-        console.log(error);
+        
         $("#password").addClass('border border-danger');
         $("#cpassword").addClass('border border-danger');
     }
     else
     {
 
+    
+        // Get some values from elements on the page:
+        $("#password").removeClass('border border-danger');
+        $("#cpassword").removeClass('border border-danger');
+        var $form = $( this );
+        
+        console.log(password);
+        console.log(cpassword);
+        var data = {
+                "password":password,
+                "user_id":user_id
+            };
+        
+        
         var url = 'controller/update_password.php';
         // Send the data using post
         var posting = $.post( url, data );
@@ -50,13 +53,12 @@ $( "#user_password" ).submit(function( event ) {
         window.location.href = "user_list.php";
         });
         posting.fail(function() {
-        window.location.href = "update_password.php";
+        window.location.href = "update_password.php?id="+user_id;
         })
-        $("#password").removeClass('border border-danger');
-        $("#cpassword").removeClass('border border-danger');
+        
 
     }
+   
     
         
   });
-});
