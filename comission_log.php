@@ -80,8 +80,17 @@ include(__DIR__."/controller/comission_log.php");
                 <?php
                 
                   foreach($ProductList_Array as $key=>$value){
+                    if($value['purchaser_level']==1){
+                      $purchaser_level = 'Star';
+                    }
+                    elseif($value['purchaser_level']==2){
+                      $purchaser_level = 'Raising Star';
+                    }
+                    else{
+                      $purchaser_level = 'Lucky Star';
+                    }
                     echo '<tr><td class="text-capitalize">'.$value['purchaser_id']['name'].'</td>';
-                    echo '<td >'.$value['purchaser_level'].'</td>';
+                    echo '<td >'.$purchaser_level.'</td>';
                     echo '<td >'.$value['commision_amount'].'</td>';
                     echo '<td >'.$value['commision_per'].'</td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
