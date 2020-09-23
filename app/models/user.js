@@ -38,7 +38,7 @@ userSchema = new Schema (
         created_time    : {type: Date, default: Date.now}  
     }
 );
-userSchema.plugin(AutoIncrement, {inc_field: 'user_serial_number', start_seq:1000000, collection_name:'user'});
+userSchema.plugin(AutoIncrement, {inc_field: 'user_serial_number', start_seq:1000001, collection_name:'user'});
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
