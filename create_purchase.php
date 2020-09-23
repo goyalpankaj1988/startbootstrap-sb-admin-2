@@ -14,6 +14,8 @@ foreach($ProductList_Array as $key=>$value){
 ?>
  <!-- Custom styles for this page -->
  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+ <link href="css/mlm.css" rel="stylesheet">
+
 
 <script type="text/javascript">
   var dataJason = <?php echo json_encode($ProductList_Array); ?>;
@@ -45,6 +47,7 @@ foreach($ProductList_Array as $key=>$value){
                   <thead>
                     <tr>
                       <th>Product</th>
+                      <th>Image</th>
                       <th>Quantity</th>
                       <th>MRP</th>
                       <th>DP</th>
@@ -63,7 +66,13 @@ foreach($ProductList_Array as $key=>$value){
                   <tbody>
                     <?php
                       foreach($ProductList_Array as $key=>$value){
+                        $img_url = 'img/product/eye_cream.jpg';
+                        if(file_exists('img/product/'.$value['_id'].'/1.jpg'))
+                        {
+                          $img_url = 'img/product/'.$value['_id'].'/1.jpg';
+                        }
                         echo "<tr class='tableDataG'><td>".$value['product_name']."</td>";
+                        echo '<td style="width: 10%;"><img class="product-image" style="width: 50%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
                         echo "<td>".$value['quantity']."</td>";
                         echo "<td>".$value['mrp']."</td>";
                         echo "<td id='".$value['_id']."_dp'>".$value['dp']."</td>";
@@ -113,6 +122,22 @@ foreach($ProductList_Array as $key=>$value){
           </button -->
         </div>
       </div>
+       <div class="modal fade" id="uproductImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="product_image">
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
 
       <!------ /.no-print---->
       <div class="d-flex align-items-center" >
