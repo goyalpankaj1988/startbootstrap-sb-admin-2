@@ -29,6 +29,12 @@ userSchema = new Schema (
         first_purches :{type: String, enum:['Y','N'], default: 'N'},
         membar_count :{type:Number, default:0, min:0, max:4},
         member_count_level2 :{type:Number, default:0, min:0, max:16},
+        member_count_level3 :{type:Number, default:0, min:0},
+        member_count_level4 :{type:Number, default:0, min:0},
+        member_count_level5 :{type:Number, default:0, min:0},
+        member_count_level6 :{type:Number, default:0, min:0},
+        member_count_level7 :{type:Number, default:0, min:0},
+        member_count_level8 :{type:Number, default:0, min:0},
         created_time    : {type: Date, default: Date.now}  
     }
 );

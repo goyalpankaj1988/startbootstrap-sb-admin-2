@@ -221,6 +221,45 @@ function check_user_ref(user_ref_id){
     })
 }
 
+async function updateMemberCount(request_data,level){
+    return new Promise(function(resolve, reject) {
+        level = level+1
+        console.log(level)
+        if(level<9 && String(request_data._id) != String(request_data.user_ref_id)){
+            
+            try{
+                var a={}
+            
+                a['member_count_level'+level]=1
+                user.findByIdAndUpdate({
+                    "_id":new mongo.ObjectID(request_data.user_ref_id)
+                },{
+                    $inc:a
+                    
+                })
+                .exec(function (err,result2) {
+                    if(err){
+                        reject(err)
+                    }
+                    else{
+                        // console.log(result2);
+                        updateMemberCount(result2,level)        
+                    }
+                })
+            }
+            catch{
+                reject('error')
+            }
+            
+            
+        }
+        else{
+            resolve(level)
+        }
+        
+    })
+}
+
 
 function adde_user_ref(user_id,user_ref_id){
     return new Promise(function(resolve, reject) {
@@ -259,33 +298,8 @@ function adde_user_ref(user_id,user_ref_id){
                                 reject(err)
                             }
                             else{
-                                console.log(result1);
-                                //ckeck level 2 count
-                                console.log(result1.user_ref_id);   
-                                user.findByIdAndUpdate({
-                                    "_id":new mongo.ObjectID(result1.user_ref_id)
-                                },{
-                                    $inc:{member_count_level2:1}
-                                     
-                                })
-                                .exec(function (err,result2) {
-                                    if(err){
-                                        reject(err)
-                                    }
-                                    else{
-                                        console.log(result2);
-                                        //ckeck level 2 count
-
-                                        
-
-
-                                        //end 
-                                        resolve(result2)
-                                    }
-                                })
-
-
-                                //end 
+                                updateMemberCount(result1,1)
+                                resolve(user_ref_t._id);
                                 
                             }
                         })
