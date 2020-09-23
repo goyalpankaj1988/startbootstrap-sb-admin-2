@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 userSchema = new Schema (
     {  
@@ -21,22 +22,23 @@ userSchema = new Schema (
         ifsc             : {type: String, required: true},
         status          : {type: String, enum:['Y','N'], default: 'Y'},
         earned_amonut   : {type:Number, default:0},
+        user_serial_number   : {type:Number,  default:1000000, unique: true, mim:1000000},
         total_purchase_amonut   : {type:Number, default:0},
         paid_amonut     : {type:Number, default:0},
         user_ref_id :{type: Schema.Types.ObjectId, ref: 'user'},
         first_purches :{type: String, enum:['Y','N'], default: 'N'},
         membar_count :{type:Number, default:0, min:0, max:4},
+        level_count:[],
         created_time    : {type: Date, default: Date.now}  
     }
 );
-// hash the password
+userSchema.plugin(AutoIncrement, {inc_field: 'user_serial_number', start_seq:1000000, collection_name:'user'});
 userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
   
-// checking if password is valid
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
-//Export model
+
 module.exports = mongoose.model('user', userSchema);

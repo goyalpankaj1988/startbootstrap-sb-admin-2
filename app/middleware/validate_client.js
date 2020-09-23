@@ -19,7 +19,7 @@ module.exports = function validate_client_token(req, res, next) {
       
       data = {
         "url":req.originalUrl,
-        "ip":req.ip,
+        "ip":ip,
         "param":req.body,
         "user_id":user_id
       }
