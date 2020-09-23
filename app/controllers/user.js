@@ -259,7 +259,34 @@ function adde_user_ref(user_id,user_ref_id){
                                 reject(err)
                             }
                             else{
-                                resolve(result1)
+                                console.log(result1);
+                                //ckeck level 2 count
+                                console.log(result1.user_ref_id);   
+                                user.findByIdAndUpdate({
+                                    "_id":new mongo.ObjectID(result1.user_ref_id)
+                                },{
+                                    $inc:{member_count_level2:1}
+                                     
+                                })
+                                .exec(function (err,result2) {
+                                    if(err){
+                                        reject(err)
+                                    }
+                                    else{
+                                        console.log(result2);
+                                        //ckeck level 2 count
+
+                                        
+
+
+                                        //end 
+                                        resolve(result2)
+                                    }
+                                })
+
+
+                                //end 
+                                
                             }
                         })
                     }
