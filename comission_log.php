@@ -81,14 +81,15 @@ include(__DIR__."/controller/comission_log.php");
                 
                   foreach($ProductList_Array as $key=>$value){
                     if($value['purchaser_level']==1){
-                      $purchaser_level = 'Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
                     elseif($value['purchaser_level']==2){
-                      $purchaser_level = 'Raising Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
                     else{
-                      $purchaser_level = 'Lucky Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
+                    
                     echo '<tr><td class="text-capitalize">'.$value['purchaser_id']['name'].'</td>';
                     echo '<td >'.$purchaser_level.'</td>';
                     echo '<td >'.$value['commision_amount'].'</td>';

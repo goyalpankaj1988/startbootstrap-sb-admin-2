@@ -80,13 +80,13 @@ include(__DIR__."/controller/comission_distribution.php");
                   $array_count = count($ProductList_Array);
                   foreach($ProductList_Array as $key=>$value){
                     if($value['purchaser_level']==1){
-                      $purchaser_level = 'Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
                     elseif($value['purchaser_level']==2){
-                      $purchaser_level = 'Raising Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
                     else{
-                      $purchaser_level = 'Lucky Star';
+                      $purchaser_level = $value['purchaser_level'];
                     }
                     
                     echo '<tr><td class="text-capitalize">'.$value['agent_id']['name'].'</td>';

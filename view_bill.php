@@ -82,6 +82,8 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <div class="col-sm-4 invoice-col">
                   
                   <br>
+                  
+                  <b>Payment mode:</b> <?php echo $purchaseDetails['paymet_mode']=='offline'?"Paid Online":"COD";?><br>
                   <b>Purchase Id:</b> <?php echo $purchaseDetails['_id'];?><br>
                   <b>Purchase Time:</b> <?php echo date("d-M-Y H:i:s", strtotime($purchaseDetails['created_time']));?><br>
                   <!-- <b>Account:</b> <?php echo $purchaseDetails['account_number'];?> -->
@@ -95,7 +97,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <div class="col-xs-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
-                    <tr>
+                    <tr>    
                       <th>Qty</th>
                       <th>Product</th>
                       <th>Serial #</th>

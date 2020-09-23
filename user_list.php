@@ -84,6 +84,7 @@ include(__DIR__."/controller/user_list.php");
                 <thead>
                   <tr>
                     <th>Name</th>
+                    <th>Badge</th>
                     <th>Earned amount</th>
                     <th>Paid amount</th>
                     <th>Pending amount</th>
@@ -98,6 +99,7 @@ include(__DIR__."/controller/user_list.php");
                 <tfoot>
                   <tr>
                     <th>Name</th>
+                    <th>Badge</th>
                     <th>Earned amount</th>
                     <th>Paid amount</th>
                     <th>Pending amount</th>
@@ -112,10 +114,24 @@ include(__DIR__."/controller/user_list.php");
                 <tbody>
 		            <?php
                foreach($ProductList_Array as $key=>$value){
+                    $Badge='';
+                    if($value['member_count_level3']>20){
+                      $Badge="Premimum Star";
+                    }
+                    elseif($value['member_count_level2']==16){
+                      $Badge="Raising Star";
+                    }
+                    elseif($value['membar_count']==4){
+                      $Badge="Lucky Star";
+                    }
+                    else{
+                      $Badge='Star';
+                    }
                     $pendingA = $value['earned_amonut'] - (float)$value['paid_amonut'];
 		                $pendingA = round($pendingA,2);
                     echo '<tr><td class="text-capitalize"><a href="update_password.php?id='.$value['_id'].'" title="Change paswword"><i class="fa fa-lock" aria-hidden="true"></i></a><img class="mr-2 ml-1 userinfo" title = "User details" mobile="'.$value['mobile'].'" email_id="'.$value['email_id'].'"
-                    address1="'.$value["address1"].'" address2="'.$value["address2"].'" name="'.$value["name"].'" zip="'.$value['zipcode'].'" state="'.$value['state'].'" country="'.$value['country'].'" account="'.$value['account_number'].'" ifsc="'.$value['ifsc'].'" data-toggle="modal" data-target="#userdetailsModal" src="img/select-user.png" style="height: 16px;width: 16px;" ></img><a href="user_network.php?id='.$value['_id'].'&name='.$value['name'].'" title="User network">'.$value['name'].'</a></td>';
+                    address1="'.$value["address1"].'" address2="'.$value["address2"].'" name="'.$value["name"].'" zip="'.$value['zipcode'].'" state="'.$value['state'].'" country="'.$value['country'].'" account="'.$value['account_number'].'" ifsc="'.$value['ifsc'].'" data-toggle="modal" data-target="#userdetailsModal" src="img/select-user.png" style="height: 16px;width: 16px;" ></img><a href="user_network.php?id='.$value['_id'].'&name='.$value['name'].'" title="User network">'.$value['name'].'('.$value['user_serial_number'].')</a></td>';
+                    echo '<td>'.$Badge.'</td>';
                     echo '<td ><a href="comission_log.php?id='.$value['_id'].'&name='.$value['name'].' " title = "Comission log">'.$value['earned_amonut'].'</a></td>';
                     echo '<td ><a href="payment_log.php?id='.$value['_id'].'&name='.$value['name'].'" title = "Payment log">'.$value['paid_amonut'].'</a></td>';
                     echo '<td >';
@@ -157,7 +173,7 @@ include(__DIR__."/controller/user_list.php");
                     </span></a><span class="ml-1" title="Total Purchase Amonut">'.$value['total_purchase_amonut'].'</span></td>';
                     echo '<td>'. date("d-M-Y H:i:s", strtotime($value['created_time'])).'</td>';
                     if($_SESSION['user']['role']=='admin'){
-                    echo '<td class="text-capitalize"><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network" >'.$value['user_ref_id']['name'].'</a></td>';
+                    echo '<td class="text-capitalize"><a href="user_network.php?id='.$value['user_ref_id']['_id'].'&name='.$value['user_ref_id']['name'].'" title="User network" >'.$value['user_ref_id']['name'].'('.$value['user_ref_id']['user_serial_number'].')</a></td>';
                    }
                     echo '</tr>';
                   }
