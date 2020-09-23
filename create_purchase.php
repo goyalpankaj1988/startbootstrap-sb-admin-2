@@ -58,7 +58,7 @@ foreach($ProductList_Array as $key=>$value){
                   </thead>
                   <tfoot>
                     <tr>
-                      <th colspan="4" class="text-right">Total</th>
+                      <th colspan="5" class="text-right">Total</th>
                       <th id="total_qnt">0</th>
                       <th id="total_amt">0</th>
                     </tr>
