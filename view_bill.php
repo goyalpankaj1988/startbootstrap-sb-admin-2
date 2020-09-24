@@ -43,7 +43,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                   <h2 class="page-header">
                     
                     <!-- <i class="fa fa-globe"></i>  -->
-                    AdminLTE, Inc.
+                    Femenlife
                     <!-- <small class="text-right">Date: 2/10/2014</small> -->
                   </h2>
                 </div>
@@ -54,11 +54,11 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <div class="col-sm-4 invoice-col">
                   From
                   <address>
-                    <strong>Admin, Inc.</strong><br>
-                    795 Folsom Ave, Suite 600<br>
+                    <strong>Femenlife</strong><br>
+                    <!-- 795 Folsom Ave, Suite 600<br>
                     San Francisco, CA 94107<br>
-                    Phone: (804) 123-5432<br>
-                    Email: info@almasaeedstudio.com
+                    Phone: (804) 123-5432<br> -->
+                    Email: femenofficial@gmail.com
                   </address>
                 </div>
                 <!-- /.col -->
@@ -82,8 +82,6 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <div class="col-sm-4 invoice-col">
                   
                   <br>
-                  
-                  <b>Payment mode:</b> <?php echo $purchaseDetails['paymet_mode']=='offline'?"Paid Online":"COD";?><br>
                   <b>Purchase Id:</b> <?php echo $purchaseDetails['_id'];?><br>
                   <b>Purchase Time:</b> <?php echo date("d-M-Y H:i:s", strtotime($purchaseDetails['created_time']));?><br>
                   <!-- <b>Account:</b> <?php echo $purchaseDetails['account_number'];?> -->
@@ -97,7 +95,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                 <div class="col-xs-12 table-responsive">
                   <table class="table table-striped">
                     <thead>
-                    <tr>    
+                    <tr>
                       <th>Qty</th>
                       <th>Product</th>
                       <th>Serial #</th>
