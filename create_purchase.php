@@ -66,11 +66,25 @@ foreach($ProductList_Array as $key=>$value){
                   <tbody>
                     <?php
                       foreach($ProductList_Array as $key=>$value){
-                        $img_url = 'img/product/eye_cream.jpg';
-                        if(file_exists('img/product/'.$value['_id'].'/1.jpg'))
+                        $img_url = 'img/product/default_image.png';
+
+                        // $files = readdir('img/product/100');
+                        if(is_dir('img/product/'.$value['_id']))
                         {
-                          $img_url = 'img/product/'.$value['_id'].'/1.jpg';
+                          $files =  preg_grep('/^([^.])/', scandir('img/product/'.$value['_id']));
+                          foreach ($files as $key => $value) {
+                            if($value)
+                            {
+                              $img_url = $value;
+                            }
+                          }
                         }
+                        
+                       
+                        // if(file_exists('img/product/'.$value['_id'].'/1.jpg'))
+                        // {
+                        //   $img_url = 'img/product/'.$value['_id'].'/1.jpg';
+                        // }
                         echo "<tr class='tableDataG'><td>".$value['product_name']."</td>";
                         echo '<td style="width: 10%;"><img class="product-image" style="width: 50%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
                         echo "<td>".$value['quantity']."</td>";
