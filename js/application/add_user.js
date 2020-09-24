@@ -128,7 +128,7 @@ function isvalidform()
 
 }
 
-	$("#reference").keypress(function(event){
+	$("#reference").keydown(function(event){
 		var ref_name =$("#reference").val(); 
 		$("#reference_hidden").val('');
 		if(ref_name.length >= 3)
@@ -150,7 +150,7 @@ function isvalidform()
 				    else
 				    {
 				    	$.each(obj, function(key,value) {
-						  html += '<a class="dropdown-item border border-success reflist" id='+ key +' value='+ value +'>'+ value +'</a>';
+						  html += '<a class="dropdown-item border border-success reflist" style="width:100%;" id='+ key +' value='+ value +'>'+ value +'</a>';
 						});
 				    }
 					

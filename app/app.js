@@ -14,7 +14,7 @@ var app = express();
 
 var mongoose = require('mongoose');
 //var mongoDB = 'mongodb://localhost:27017/mlm_1';
-var mongoDB = 'mongodb+srv://pankaj_test:pankaj_test@cluster0.jaqcz.mongodb.net/mlm_test?retryWrites=true&w=majority'
+var mongoDB = 'mongodb+srv://pankaj_test:pankaj_test@cluster0.jaqcz.mongodb.net/mlm_2?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -41,7 +41,7 @@ app.use('/login', login);
 app.use('/api_list',api_list);
 app.use('/admin_api_list',admin_api_list);
 
-const port = 3000
+const port = 3002
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

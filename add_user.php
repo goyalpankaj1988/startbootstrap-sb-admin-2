@@ -86,9 +86,9 @@ include("sidebar.php");
                 </div>
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label for="exampleInputEmail1" class="text-dark">Reference user serial number</label>
-                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference user serial number" autocomplete="off" required>
-                    <small id="emailHelp" class="form-text text-muted">Please search by reference user's serial number</small>
+                    <label for="exampleInputEmail1" class="text-dark">Reference user email</label>
+                    <input type="text" class="form-control form-control-user required" id="reference" name="reference" placeholder="reference user email" autocomplete="off" required>
+                    <small id="emailHelp" class="form-text text-muted">Please search by reference user's email</small>
                     <div id="reference_list" style="display: none"></div>
                   </div>
                   <div class="col-sm-6">
