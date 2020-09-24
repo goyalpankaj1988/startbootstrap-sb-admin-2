@@ -1,0 +1,5 @@
+.bg-logo-image{
+	background: url(../img/logo_compressed.jpg);
+    background-position: center;
+    background-size: cover;
+}

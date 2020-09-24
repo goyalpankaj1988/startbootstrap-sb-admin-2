@@ -7,8 +7,8 @@ $menu = $_SESSION['menu'];
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="user_list.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon rotate-n-0">
+          <img src="img/logo.JPG" style="width:100%;">
         </div>
         <div class="sidebar-brand-text mx-3"><?php echo $_SESSION['user']['name']?></div>
       </a>
