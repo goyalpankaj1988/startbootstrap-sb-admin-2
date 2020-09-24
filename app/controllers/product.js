@@ -23,7 +23,7 @@ exports.add_product = async function(req, res) {
         
         add_product_table(data)
         .then(function(values){
-            res.status(messages.status.OK).json({ "msg":"Product added succefully"});
+            res.status(messages.status.OK).json(values);
             return;
         }).catch(function(error){
             res.status(messages.status.dbError).json({ errors: error });

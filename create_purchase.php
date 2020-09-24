@@ -72,10 +72,10 @@ foreach($ProductList_Array as $key=>$value){
                         if(is_dir('img/product/'.$value['_id']))
                         {
                           $files =  preg_grep('/^([^.])/', scandir('img/product/'.$value['_id']));
-                          foreach ($files as $key => $value) {
-                            if($value)
+                          foreach ($files as $key => $value_1) {
+                            if($value_1)
                             {
-                              $img_url = $value;
+                              $img_url = 'img/product/'.$value['_id'].'/'.$value_1;
                             }
                           }
                         }
@@ -86,7 +86,7 @@ foreach($ProductList_Array as $key=>$value){
                         //   $img_url = 'img/product/'.$value['_id'].'/1.jpg';
                         // }
                         echo "<tr class='tableDataG'><td>".$value['product_name']."</td>";
-                        echo '<td style="width: 10%;"><img class="product-image" style="width: 50%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
+                        echo '<td style="width: 10%;"><img class="product-image" style="width: 100%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
                         echo "<td>".$value['quantity']."</td>";
                         echo "<td>".$value['mrp']."</td>";
                         echo "<td id='".$value['_id']."_dp'>".$value['dp']."</td>";
