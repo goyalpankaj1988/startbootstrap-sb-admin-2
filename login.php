@@ -32,6 +32,21 @@ session_destroy();
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="css/mlm.css" rel="stylesheet">
+  <style type="text/css">
+   
+
+      .img-responsive {
+          display: none;
+        } 
+      
+        @media only screen and (max-device-width: 480px) {
+      .img-responsive {
+        display: block;
+      }
+      
+    }
+    
+  </style>
 
 </head>
 
@@ -52,6 +67,7 @@ session_destroy();
                <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
+                    <img class="img-responsive" src="img/logo.JPG" style="width:100%;" >
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
                   <?php 
