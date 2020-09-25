@@ -115,7 +115,7 @@ include(__DIR__."/controller/user_list.php");
 		            <?php
                foreach($ProductList_Array as $key=>$value){
                     $Badge='';
-                    if($value['member_count_level3']>20){
+                    if($value['membar_count']==4 && $value['member_count_level2']==16 && $value['member_count_level3']>20){
                       $Badge="Premimum Star";
                     }
                     elseif($value['member_count_level2']==16){
