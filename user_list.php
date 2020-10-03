@@ -78,7 +78,7 @@ include(__DIR__."/controller/user_list.php");
               <div class="card-header py-3">
                 
                 <div class="box-tools">
-                    <div class="input-group input-group-sm hidden-xs" style="width: 50%;">
+                    <div class="input-group input-group-sm hidden-xs">
 
                       <label for="startdate" class="text-dark">User Joined Start Date</label>
                       <input type="date" id="startdate" name="startdate" class="form-control pull-right mr-2 ml-2" placeholder="Date start" value="<?php echo $start_date;?>">
