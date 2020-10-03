@@ -3,12 +3,28 @@ var user = require('../models/user')
 
 
 var mongo = require('mongodb');
+const { data } = require('jquery');
 
 exports.user_list = async function(req, res) {
   
     if(req.role && req.name && req.user_id){
+        let data = {}
         if(req.role=='admin'){
-            data = {}
+            if(req.body.start_date && req.body.end_date){
+                let start_date            = new Date(req.body.start_date)      
+                let end_date            = new Date(req.body.end_date)     
+                data = {
+                    "created_time" : 
+                    {
+                        "$gte" : start_date, 
+                        "$lt" : end_date 
+                    }
+                }
+            }
+            else{
+                data={}
+            }
+            
         }
         else{
             data = {"_id":new mongo.ObjectID(req.user_id)}

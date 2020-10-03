@@ -155,6 +155,37 @@ exports.user_purches_history = async function(req, res) {
     }
 }; 
 
+exports.all_purches_history = async function(req, res) {
+    if(req.role && req.name && req.user_id){
+        // console.log(req.body)
+        let purcheser_id            = new mongo.ObjectID(req.body.purcheser_id)       
+        let start_date            = new Date(req.body.start_date)      
+        let end_date            = new Date(req.body.end_date)     
+        
+        data = {
+            "created_time" : 
+                {
+                    "$gte" : start_date, 
+                    "$lt" : end_date 
+                }
+            // "purcheser_id": purcheser_id
+        }
+        getuser_purches_history(data)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return
+        })
+        .catch(function(err){
+            res.status(messages.status.dbError).json({ errors: err });
+            return;
+        })
+    }
+    else{
+        res.status(messages.status.BadRequest).json({ errors: messages.generic_messages.all_field});
+        return;
+    }
+}; 
+
 
 exports.buy_product = async function(req, res) {
     if(req.role && req.name && req.user_id){
@@ -343,6 +374,7 @@ function getuser_purches_history(data){
     return new Promise(function(resolve, reject) {
         purches_history
         .find(data)
+        .populate('purcheser_id')
         .exec(function (err,result) {
             if(err){
                 reject(err)

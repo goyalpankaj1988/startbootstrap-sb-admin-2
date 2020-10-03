@@ -29,5 +29,10 @@ router.post('/panding_amount_paid_payment',
     purches.panding_amount_paid_payment
 );
 
+router.post('/all_purches_history',
+    [validate_client_token, role_validation],
+    purches.all_purches_history
+);
+
 
 module.exports = router;
