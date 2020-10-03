@@ -374,7 +374,8 @@ function getuser_purches_history(data){
     return new Promise(function(resolve, reject) {
         purches_history
         .find(data)
-        .populate('purcheser_id')
+        .populate('purcheser_id', ['name', 'user_serial_number'])
+        // .populate('purcheser_id')
         .exec(function (err,result) {
             if(err){
                 reject(err)

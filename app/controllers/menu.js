@@ -4,7 +4,8 @@ exports.menu= async function(req, res) {
         if(req.role=='admin'){
             data = {
                 "User list":"user_list.php",
-                "User add":"add_user.php"
+                "User add":"add_user.php",
+                "Purchase log":"all_purchase_log.php"
             }
         }
         else{
