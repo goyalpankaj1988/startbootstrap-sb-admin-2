@@ -10,6 +10,21 @@ error_reporting(0);
 
 <?php
 include("sidebar.php");
+$role = $_SESSION['user']['role'];
+if($role=='admin')
+{
+  $start_date = '';
+  $end_date = '';
+  if(isset($_GET['start_date']))
+  {
+    $start_date = $_GET['start_date'];
+  }
+  if(isset($_GET['end_date']))
+  {
+    $end_date = $_GET['end_date'];
+  }
+
+}
 include(__DIR__."/controller/user_list.php");
 // print_r($ProductList_Array);
 
@@ -58,27 +73,29 @@ include(__DIR__."/controller/user_list.php");
                
             ?>
             
-            <!-- <div class="card-header py-3">
-              
-              <div class="box-tools">
-                  <div class="input-group input-group-sm hidden-xs" style="width: 50%;">
-                    <input type="text" name="table_search" class="form-control pull-right mr-2" placeholder="Search By Name">
+            <input type="hidden" name="role" id="role" value="<?php echo $role;?>">
+            <?php if($role=='admin') { ?>
+              <div class="card-header py-3">
+                
+                <div class="box-tools">
+                    <div class="input-group input-group-sm hidden-xs" style="width: 50%;">
 
-                    
-                  
-                    <select name="filter" class="form-control pull-right" placeholder="">
-                      <option value="All">All</option>
-                      <option value="No">payment pending</option>
-                      <option value="yes">payment complete</option>
-                    </select>
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      <label for="startdate" class="text-dark">User Joined Start Date</label>
+                      <input type="date" id="startdate" name="startdate" class="form-control pull-right mr-2 ml-2" placeholder="Date start" value="<?php echo $start_date;?>">
+                      <label for="enddate" class="text-dark">User Joined End Date</label>
+                      <input type="date" id="enddate" name="enddate" class="form-control pull-right mr-2 ml-2" placeholder="Date end" value="<?php echo $end_date;?>">
+
+                      
+                      <div class="input-group-btn">
+                        <button id="search" type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                      
                     </div>
-                    
+                    <div id="error"></div>
                   </div>
-                </div>
 
-            </div> -->
+              </div> 
+            <?php }?>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
