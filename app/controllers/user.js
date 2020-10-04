@@ -14,7 +14,7 @@ exports.add_user = async function(req, res) {
         let password        =req.body.password        
         let name            =req.body.name            
         let role            =req.body.role            
-        let email_id        =req.body.email_id  
+        // let email_id        =req.body.email_id  
         let ref_id          =req.body.ref_id 
         let address1        =req.body.address1       
         let address2        =req.body.address2        
@@ -29,7 +29,7 @@ exports.add_user = async function(req, res) {
             "user_name":user_name,
             "name":name,
             "role":role,
-            "email_id":email_id,
+            "email_id":user_name,
             "ref_id":ref_id,
             "address1":address1,
             "address2":address2,
@@ -52,7 +52,7 @@ exports.add_user = async function(req, res) {
                     console.log(added_user_id)
                     adde_user_ref(added_user_id,ref_id)
                     .then(function(values){
-                        res.status(messages.status.OK).json({ "msg":"user added succefully"});
+                        res.status(messages.status.OK).json({ "msg":added_user_id});
                         return;
                     }).catch(function(error){
                         res.status(messages.status.dbError).json({ errors: error });
@@ -260,9 +260,47 @@ async function updateMemberCount(request_data,level){
     })
 }
 
+function updateChildCount(id, child_id){
+    user.findByIdAndUpdate({
+        "_id":id
+    },
+    { $inc: { "user_child_info.$[elem].child_count" : 1 } },
+    { arrayFilters: [ { "elem._id": {$eq: child_id} } ] }
+    )
+    .exec(function (err,result1) {
+        console.log(result1)
+        if(err){
+            // reject(err)
+        }
+        else{
+            if(String(result1.user_ref_id)!=String(result1._id)){
+                updateChildCount(result1.user_ref_id,result1._id)
+            }
+        }
+    });
+}
+function updateWidthCount(id, child_id){
+    user.findByIdAndUpdate({
+        "_id":id
+    },
+    { $inc: { "user_child_info.$[elem].width" : 1 } },
+    { arrayFilters: [ { "elem._id": {$eq: child_id} } ] }
+    )
+    .exec(function (err,result1) {
+        // console.log(result1)
+        if(err){
+            // reject(err)
+        }
+        else{
+            
+        }
+    });
+}
+
 
 function adde_user_ref(user_id,user_ref_id){
     return new Promise(function(resolve, reject) {
+        let user_id_x = user_id
         user_id      = new mongo.ObjectID(user_id)
         user_ref_id      = new mongo.ObjectID(user_ref_id)
         var user_ref_t = new user_ref({
@@ -276,6 +314,34 @@ function adde_user_ref(user_id,user_ref_id){
 
             }
             else{
+
+                // updateChildCount(user_ref_id,new mongo.ObjectID("5f79a6af5265f51f0552124b"))
+                // updateWidthCount(user_ref_id,new mongo.ObjectID("5f79a6af5265f51f0552124b"))
+                data = {
+                    "_id":user_id_x,
+                    "child_count":1,
+                    "width":0
+                }
+                user.findByIdAndUpdate({
+                    "_id":user_ref_id
+                },{
+                    $push:{"user_child_info":data}
+                     
+                })
+                .exec(function (err,result1) {
+                    // console.log(result1)
+                    if(err){
+                        // reject(err)
+                    }
+                    else{
+                        if(String(result1.user_ref_id)!=String(result1._id)){
+                            updateChildCount(result1.user_ref_id,result1._id)
+                            updateWidthCount(result1.user_ref_id,result1._id)
+
+                        }
+                    }
+                });
+
                 user.findByIdAndUpdate({
                     "_id":user_id
                 },{

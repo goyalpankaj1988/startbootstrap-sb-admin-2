@@ -35,7 +35,9 @@ userSchema = new Schema (
         member_count_level6 :{type:Number, default:0, min:0},
         member_count_level7 :{type:Number, default:0, min:0},
         member_count_level8 :{type:Number, default:0, min:0},
+        user_child_info:[],
         created_time    : {type: Date, default: Date.now}  
+
     }
 );
 userSchema.plugin(AutoIncrement, {inc_field: 'user_serial_number', start_seq:1000001, collection_name:'user'});
