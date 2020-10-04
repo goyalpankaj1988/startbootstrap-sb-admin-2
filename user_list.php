@@ -13,20 +13,27 @@ include("sidebar.php");
 $role = $_SESSION['user']['role'];
 if($role=='admin')
 {
-  $start_date = '';
-  $end_date = '';
-  if(isset($_GET['start_date']))
+
+  $start_date_value = date('Y-m-d');;
+  $end_date_value = date('Y-m-d');
+  if(isset($_GET['all_users']) && $_GET['all_users'] == true)
   {
-    $start_date = $_GET['start_date'];
+
+    $start_date_value = '';
+    $end_date_value = '';
   }
-  if(isset($_GET['end_date']))
+  if(isset($_GET['start_date_param']))
   {
-    $end_date = $_GET['end_date'];
+    $start_date_value = $_GET['start_date_param'];
+  }
+  if(isset($_GET['end_date_param']))
+  {
+    $end_date_value = $_GET['end_date_param'];
   }
 
 }
 include(__DIR__."/controller/user_list.php");
-// print_r($ProductList_Array);
+
 
 ?>
  <!-- Custom styles for this page -->
@@ -81,17 +88,20 @@ include(__DIR__."/controller/user_list.php");
                     <div class="input-group input-group-sm hidden-xs">
 
                       <label for="startdate" class="text-dark">User Joined Start Date</label>
-                      <input type="date" id="startdate" name="startdate" class="form-control pull-right mr-2 ml-2" placeholder="Date start" value="<?php echo $start_date;?>">
+                      <input type="date" id="startdate" name="startdate" class="form-control pull-right mr-2 ml-2" placeholder="Date start" value="<?php echo $start_date_value;?>">
                       <label for="enddate" class="text-dark">User Joined End Date</label>
-                      <input type="date" id="enddate" name="enddate" class="form-control pull-right mr-2 ml-2" placeholder="Date end" value="<?php echo $end_date;?>">
+                      <input type="date" id="enddate" name="enddate" class="form-control pull-right mr-2 ml-2" placeholder="Date end" value="<?php echo $end_date_value;?>">
 
                       
                       <div class="input-group-btn">
-                        <button id="search" type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        <button id="search" type="button" class="btn btn-info btn-sm">Search</button>
                       </div>
                       
                     </div>
                     <div id="error"></div>
+                    <div class="input-group-btn">
+                        <a href="#" id="all_users">See all Users</a>
+                    </div>
                   </div>
 
               </div> 

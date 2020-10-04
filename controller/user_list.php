@@ -8,12 +8,12 @@ if(isset($_SESSION['user']['token']))
     if($role == 'admin')
     {
       
-      if(isset($_GET['start_date']) && isset($_GET['end_date']))
+      if(!empty($start_date_value) && !empty($end_date_value))
       {
-        $start_date = $_GET['start_date'];
-        $end_date = $_GET['end_date'];
-        $start_date_val = $start_date.' 00:00:00';
-        $end_date_val = $end_date.' 23:59:59';
+        $start_date_param = $_GET['start_date_param'];
+        $end_date_param = $_GET['end_date_param'];
+        $start_date_val = $start_date_param.' 00:00:00';
+        $end_date_val = $end_date_param.' 23:59:59';
 
         $data = array('start_date' => date(DATE_ISO8601,strtotime($start_date_val)), 'end_date'=> date(DATE_ISO8601,strtotime($end_date_val)));
      }

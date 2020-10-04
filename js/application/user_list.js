@@ -66,7 +66,7 @@ $('body').on('click', '#search', function() {
 			{
 				$("#enddate").removeClass('border border-danger');
 				$("#startdate").removeClass('border border-danger');
-				window.location = "user_list.php?start_date="+$("#startdate").val()+"&end_date="+$("#enddate").val();
+				window.location = "user_list.php?start_date_param="+$("#startdate").val()+"&end_date_param="+$("#enddate").val();
 				
 
 			}
@@ -80,6 +80,18 @@ $('body').on('click', '#search', function() {
 			
 		}
 
+	} 
+
+	
+
+	
+});
+
+
+$('body').on('click', '#all_users', function() {
+	if($('#role').val() == 'admin')
+	{
+		window.location = "user_list.php?all_users=true";
 	} 
 
 	
