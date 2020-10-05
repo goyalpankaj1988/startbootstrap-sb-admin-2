@@ -209,25 +209,48 @@ exports.buy_product = async function(req, res) {
         
 
         promises[0]=add_purches_history_table(data)
-        promises[1]=getRefUserList(req.body.purcheser_id)
-        promises[2]=updateFirstPurches(req.body.purcheser_id, amount)
-        
+        // promises[1]=getRefUserList(req.body.purcheser_id)
+        promises[1]=updateFirstPurches(req.body.purcheser_id, amount)
+        promises[2]=getUserDetail(new mongo.ObjectID(req.body.purcheser_id))
         
 
         Promise.all(promises).then(function(values){
             let purches_history_id   =values[0];
-            let user_level_list =  values[1];
-            giveCommision(user_level_list,amount,purches_history_id,purcheser_id)
-            .then(function(){
-                res.status(messages.status.OK).json(values);
-                return
-            })
-            .catch(function(err){
-                res.status(messages.status.dbError).json({ errors: err });
-                return;
-            })
+            // let user_level_list =  values[1];
+            let getRefUserResult =  values[2];
+            // console.log(values)
+            
+            if(String(getRefUserResult._id)!=String(getRefUserResult.user_ref_id)){
+                getUserDetail(new mongo.ObjectID(getRefUserResult.user_ref_id)).then(function(value_1){
+                    // console.log(value_1)
+                    level = 1
+                    commision_distrubution(value_1._id,value_1.user_ref_id,value_1.user_child_info,amount,purches_history_id,purcheser_id,level)
+                    
+                })
+                .catch(function(err){
+                    console.log(err)
+                })
+                
+                
+                
+                
+                // commision_distrubution(getRefUserResult.user_ref_id,getRefUserResult.user_child_info,amount,purches_history_id,purcheser_id,level)
+            }
+            res.status(messages.status.OK).json({"msg":"data added succesfully"});
+            return
+
+            // giveCommision(user_level_list,amount,purches_history_id,purcheser_id)
+            // .then(function(){
+            //     res.status(messages.status.OK).json(values);
+            //     return
+            // })
+            // .catch(function(err){
+            //     res.status(messages.status.dbError).json({ errors: err });
+            //     return;
+            // })
             
         }).catch(function(error){
+            console.log(error)
             res.status(messages.status.dbError).json({ errors: error });
             return;
     
@@ -241,6 +264,57 @@ exports.buy_product = async function(req, res) {
         return;
     }
 }; 
+
+
+async function commision_distrubution(id, user_ref_id,user_child_info, amount,purches_history_id,purcheser_id,level){
+    if(level<9){
+        console.log(id,level,user_child_info,user_child_info.length )
+        let isGiveComission = false
+        let commision_per = 0 
+        if(user_child_info.length==4 && user_child_info[0]['child_count']>=21 && user_child_info[1]['child_count']>=21 && 
+        user_child_info[2]['child_count']>=21 && user_child_info[3]['child_count']>=21){
+            isGiveComission = true;
+            commision_per = 3
+        }
+        else if(level==1){
+            isGiveComission = true;
+            commision_per = 6
+        }
+        else if(level==2){
+            isGiveComission = true;
+            commision_per = 3
+        }
+        else if(level==3){
+            isGiveComission = true;
+            commision_per = 1
+        }
+
+        if(isGiveComission){
+            per_amount = (amount/100)*commision_per
+            data = {
+                "purchaser_id":purcheser_id,
+                "agent_id":new mongo.ObjectID(id),
+                "purches_id":new mongo.ObjectID(purches_history_id),
+                "purchaser_level":level,
+                "commision_amount":per_amount,
+                "commision_per":commision_per
+            }
+            add_commission_log_table(data)
+        }
+        
+        if(String(id)!=String(user_ref_id)){
+            getUserDetail(new mongo.ObjectID(user_ref_id)).then(function(value){
+                // console.log(value)
+                level++;
+                commision_distrubution(value._id, value.user_ref_id,value.user_child_info,amount,purches_history_id,purcheser_id,level)
+                
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+        }
+    }
+}
 
 function add_purches_history_table(data){
     return new Promise(function(resolve, reject) {
@@ -269,6 +343,8 @@ function updateFirstPurches(id, amount){
                 reject(err)
             }
             else{
+                console.log(result1)
+                
                 resolve(result1)
             }
         })
@@ -381,7 +457,7 @@ function getuser_purches_history(data){
                 reject(err)
             }
             else{
-                console.log(result)
+                // console.log(result)
                 resolve(result)
             }
         })
@@ -476,6 +552,7 @@ function add_commission_log_table(data){
     });
 }
 
+
 async function getRefUserList(id){
     return new Promise(function(resolve, reject) {
         let level_id = [];
@@ -524,6 +601,25 @@ async function getRefUserList(id){
 
 
 
+
+function getUserDetail(id){
+    return new Promise(function(resolve, reject) {
+        user
+        .findOne({
+            _id:id
+        })
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+                // console.log(result)
+            }
+        })
+    })
+}
+
 function getRefUser(id){
     return new Promise(function(resolve, reject) {
         user_ref
@@ -536,6 +632,7 @@ function getRefUser(id){
             }
             else{
                 resolve(result)
+                // console.log(result)
             }
         })
     })
