@@ -4,15 +4,10 @@
 		// console.log($(this))
 		// console.log(event)
 		// console.log(event.target.nodeName)
-		var layer_count = parseInt($(this).attr('layer_count'));
-		
-		var next_layer = layer_count+1;
-		var layer_class ='layer_'+next_layer;
-		$(".row_layer_"+layer_count).nextAll().remove();
 		// $(".row_layer_"+layer_count).nextAll( ".layerdiv").remove();
 		// var next_div ='<div class="layerdiv layer_'+next_layer+'"></div>';
 		// console.log(next_div);
-		console.log("row_layer_"+layer_count);
+		
 
 
 		// {
@@ -21,6 +16,13 @@
 			
 		if(event.target.nodeName=='DIV')
 		{
+			var layer_count = parseInt($(this).attr('layer_count'));
+		
+			var next_layer = layer_count+1;
+			var layer_class ='layer_'+next_layer;
+			$(".row_layer_"+layer_count).nextAll().remove();
+			console.log("row_layer_"+layer_count);
+		
 			var url = "controller/user_network_ae.php";
 			var user_id = $(this).attr('user_id');
 			var user_name = $(this).attr('user_name');
@@ -74,6 +76,7 @@
 						$.each(obj, function(key,value) {
 							if(key != 'user_count')
 							{
+								// console.log(value)
 								html += '<div class="col-xl-3 col-md-6 mb-4 highlight layerdiv '+layer_class+'">';
 								html += '<div class="card border-left-primary shadow h-100 py-2">';
 								html += '<div class="card-body">';
