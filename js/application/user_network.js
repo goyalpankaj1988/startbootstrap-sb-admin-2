@@ -5,9 +5,17 @@
 		// console.log(event)
 		// console.log(event.target.nodeName)
 		var layer_count = parseInt($(this).attr('layer_count'));
-		var layer_class ='layer_'+layer_count;
-		if( layer_count < 3 && event.target.nodeName=='DIV')
-		{
+		
+		var next_layer = layer_count+1;
+		var layer_class ='layer_'+next_layer;
+		$(".row_layer_"+layer_count).nextAll().remove();
+		// $(".row_layer_"+layer_count).nextAll( ".layerdiv").remove();
+		// var next_div ='<div class="layerdiv layer_'+next_layer+'"></div>';
+		// console.log(next_div);
+		console.log("row_layer_"+layer_count);
+
+
+		// {
 	    
 
 			var url = "controller/user_network_ae.php";
@@ -15,19 +23,31 @@
 			var user_name = $(this).attr('user_name');
 			$(".highlight").css('background-color','');
 			$(this).closest(".highlight").css('background-color','blue');
-			
-			var next_layer = layer_count+1;
-			if(layer_count == 1)
-			{
-				$(".layer_2").html(' ');
-				$(".layer_3").html(' ');
-			}
-			else
-			{
-				$(".layer_"+next_layer).html(' ');
 
-			}
 			
+			var next_div = '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
+			next_div += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
+			next_div += '</div>';
+			next_div += '<div class="row row_layer_'+next_layer+'">';
+			next_div += '<div class="layerdiv layer_'+next_layer+'"></div>';
+			next_div += '</div>';
+
+			$('body').find(".row_layer_"+layer_count).after(next_div);
+		// if(event.target.nodeName=='DIV')
+			
+			
+			// if(layer_count == 1)
+			// {
+			// 	$(".layer_2").html(' ');
+			// 	$(".layer_3").html(' ');
+			// }
+			// else
+			// {
+			// 	$(".layer_"+next_layer).html(' ');
+
+			// }
+			
+			// $(".layer_"+next_layer).html(' ');
 
 			$.ajax({
 			type: "POST",
@@ -38,23 +58,22 @@
 					
 					var obj = jQuery.parseJSON(data);
 					console.log(obj.user_count);
+
+
 					var html = '';
 					if( obj.user_count > 0)
 					{
 						
 						
-						// var layer_count = $("#layer").val();
-						
-						console.info(next_layer);
-						html +='<div id="ajay">';
-						html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
-						html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
-						html += '</div>';
-						html += '<div class="row">';
+						// html +='<div id="">';
+						// html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
+						// html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
+						// html += '</div>';
+						// html += '<div class="row row_layer_'+next_layer+'">';
 						$.each(obj, function(key,value) {
 							if(key != 'user_count')
 							{
-								html += '<div class="col-xl-3 col-md-6 mb-4 highlight '+layer_class+'">';
+								html += '<div class="col-xl-3 col-md-6 mb-4 highlight layerdiv '+layer_class+'">';
 								html += '<div class="card border-left-primary shadow h-100 py-2">';
 								html += '<div class="card-body">';
 								html += '<div class="row no-gutters align-items-center">';
@@ -78,7 +97,8 @@
 								html += '</div>';
 								html +=  '</div>';
 								html += '</div>';
-								html += '</div>';
+								html +=  '</div>';
+								
 							}
 							
 
@@ -89,12 +109,12 @@
 					}
 					else
 					{
-						html +='<div id="ajay">';
-						html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
-						html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
-						html += '</div>';
-						html += '<div class="row">';
-						html += '<div class="col-xl-3 col-md-6 mb-4 highlight_ajay">';
+						// html +='<div id="">';
+						// html += '<div class="d-sm-flex align-items-center justify-content-between mb-4">';
+						// html += '<h1 class="h3 mb-0 text-gray-800 text-capitalize">'+user_name+"'s Network</h1>";
+						// html += '</div>';
+						// html += '<div class="row">';
+						html += '<div class="col-xl-3 col-md-6 mb-4 highlight layerdiv '+layer_class+'">';
 						html += '<div class="card border-left-primary shadow h-100 py-2">';
 						html += '<div class="card-body">';
 						html += '<div class="row no-gutters align-items-center">';
@@ -108,7 +128,9 @@
 						html +='</div>';
 								
 					}
-					$(".layer_"+next_layer).html(html);
+					$('body').find(".layer_"+next_layer).replaceWith(html);
+
+					// $(".layer_"+next_layer).html(html);
 
 				  // var layer_count = $("#layer").val();
 				  // layer_count ++;
@@ -118,7 +140,7 @@
 			});
 
 
-		}
+		// }
 
 		
 	});

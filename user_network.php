@@ -49,7 +49,7 @@ $layercount = 1;
               <?php foreach($userNetworkArr as $key=>$value){
               ?>
               
-              <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
+              <div class="col-xl-3 col-md-6 mb-4 highlight layerdiv <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
                 <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -83,7 +83,7 @@ $layercount = 1;
             }
             else
             {?>
-              <div class="col-xl-3 col-md-6 mb-4 highlight <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
+              <div class="col-xl-3 col-md-6 mb-4 highlight layerdiv <?php echo 'layer_'.$layercount;?>" layer="<?php echo $layercount;?>">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -100,10 +100,10 @@ $layercount = 1;
             <?php }
             ?>
             </div> 
-            <div class="layer_2">
+            <!-- <div class="layer_2">
             </div>
             <div class="layer_3">
-            </div>
+            </div> -->
             
           
         </div>
