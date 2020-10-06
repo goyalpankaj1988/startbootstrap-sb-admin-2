@@ -18,6 +18,9 @@
 		// {
 	    
 
+			
+		if(event.target.nodeName=='DIV')
+		{
 			var url = "controller/user_network_ae.php";
 			var user_id = $(this).attr('user_id');
 			var user_name = $(this).attr('user_name');
@@ -33,8 +36,6 @@
 			next_div += '</div>';
 
 			$('body').find(".row_layer_"+layer_count).after(next_div);
-		// if(event.target.nodeName=='DIV')
-			
 			
 			// if(layer_count == 1)
 			// {
@@ -140,7 +141,7 @@
 			});
 
 
-		// }
+		}
 
 		
 	});
