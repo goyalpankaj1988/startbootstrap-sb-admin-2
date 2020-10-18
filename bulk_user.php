@@ -5,9 +5,9 @@ $obj = new Utils();
 $url ='/admin_api_list/add_user';
 // $data = array();
 $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYWRtaW58QWRtaW58NWY1Y2ZmZTY2ZmQyMTQzYTkxMDU4MDQ3fDo6MSIsImlhdCI6MTYwMDQyNTQxNSwiZXhwIjoxNjMxOTYxNDE1fQ.TBh7gHN7PnOH9tMXxzH3UuATTY6ZvIDvWFpxsNtHp8E';
-$refID = ["5f79fec0c7f4d92f03441f4e"];
-$user = 3;
-$total_user = 40;
+$refID = ["5f7cc4b2fd92a4645c0c7091"];
+$user = 4;
+$total_user = 84;
 $countUSer = 0;
 
 while($countUSer<$total_user){
@@ -16,12 +16,12 @@ while($countUSer<$total_user){
         
         if($countUSer<$total_user){
             $countUSer++;
-            echo $a = substr(str_shuffle(str_repeat("abcdefghijklmnopqrstuvwxyz", 5)), 0, 5);
+           echo $a = substr(str_shuffle(str_repeat("abcdefghijklmnopqrstuvwxyz", 5)), 0, 5);
             echo $b = substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
 
             $name = $a.'_'.$b;
             $username = $a.'_'.$b.'@test.com';
-            echo $refID_id."\n";
+           // echo $refID_id."\n";
             $data = array(
                 "role" => "user",
                 "status" => "Y",
@@ -45,10 +45,10 @@ while($countUSer<$total_user){
 
             $response = $obj->callAPI("POST",$url,json_encode($data),$token);
             $ProductList_Array = json_decode($response['result'],true);
-            print_r($ProductList_Array);
+            //print_r($ProductList_Array);
             array_push($refID,$ProductList_Array['msg']);
-            echo "\n".$countUSer."\n"."oooooo=>".$i."\n";
-            print_r($refID);
+            //echo "\n".$countUSer."\n"."oooooo=>".$i."\n";
+            //print_r($refID);
         }
     }
 }
