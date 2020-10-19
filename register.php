@@ -22,7 +22,8 @@ session_destroy();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+  
   <title>User - Registration</title>
 
   <!-- Custom fonts for this template-->
@@ -347,12 +348,24 @@ session_destroy();
                data: form.serialize(), // serializes the form's elements.
                success: function(data)
                {
-                    
+                window.location.href ='login.php';            
                    
                }
              });
-        window.location.href ='login.php';
+        // window.location.href ='login.php';
       }
+      // var form = $("#user");
+      //   var url = "controller/userRegistration.php";
+      //   $.ajax({
+      //          type: "POST",
+      //          url: url,
+      //          data: form.serialize(), // serializes the form's elements.
+      //          success: function(data)
+      //          {
+      //           // window.location.href ='login.php';            
+                   
+      //          }
+      //        });
 
       
     });

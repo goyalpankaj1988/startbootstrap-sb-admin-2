@@ -14,6 +14,7 @@ try
 	  $data['user_name'] =$_POST['email'];
 	  $data['email_id'] =$_POST['email'];
 	  $data['name'] = $data['fname'].' '.$data['lname'];
+	//   print_r($data); exit;
 	  $token = '';
 	  $response = $obj->callAPI("POST",$url,json_encode($data),$token);
 	  $_SESSION['msg_success'] = 'User added done successfully.';
