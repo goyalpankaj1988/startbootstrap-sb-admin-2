@@ -36,7 +36,8 @@ userSchema = new Schema (
         member_count_level7 :{type:Number, default:0, min:0},
         member_count_level8 :{type:Number, default:0, min:0},
         user_child_info:[],
-        created_time    : {type: Date, default: Date.now}  
+        created_time    : {type: Date, default: Date.now},
+        dob          : {type: String}    
 
     }
 );

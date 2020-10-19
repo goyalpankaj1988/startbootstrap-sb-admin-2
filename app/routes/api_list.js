@@ -63,6 +63,18 @@ router.put('/update_password',
     [validate_client_token],
     user.update_user_password
 );
+router.post('/fetch_user',
+    
+    user.get_user
+);
+router.post('/validate_email',
+    
+    user.validate_email
+);
+router.post('/user_register',
+    
+    user.registration
+);
 
 
 module.exports = router;
