@@ -223,6 +223,9 @@ session_destroy();
 
 </div>
 </form>
+<div class="d-flex align-items-center" >
+        <div class="spinner-border ml-auto" style="display:none" role="status" aria-hidden="true"></div>
+      </div>
 </div>
 </div>
 </div>
@@ -248,6 +251,8 @@ session_destroy();
   {
     
     $('#register').on("click", function(){
+      $('.spinner-border').show();
+      $('#register').prop('disabled', true);
       var age_confirm = $('#age').is(":checked");
       var terms = $('#terms').is(":checked");
 
@@ -352,6 +357,8 @@ session_destroy();
       }
       if(msg != '')
       {
+        $('.spinner-border').hide();
+         $('#register').prop('disabled', false);
         alert(msg);
       }
       else
