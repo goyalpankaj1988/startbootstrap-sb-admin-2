@@ -111,7 +111,7 @@ include("sidebar.php");
                   <label class="custom-file-label" for="validatedCustomFile">Choose Product image...</label>
                   <small id="validatedCustomFilelHelp" class="form-text text-muted"></small>
                   
-                  <small id="emailHelp" class="form-text text-muted">If you want to chnage image of product in that case only uploda image else don't do anything with this field.</small>
+                  <small id="emailHelp" class="form-text text-muted">If you want to chnage image of product in that case only upload image else don't do anything with this field.</small>
                   
                 </div>
                 
