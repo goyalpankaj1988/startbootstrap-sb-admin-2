@@ -49,6 +49,10 @@ session_destroy();
       }
       
     }
+    label{
+      width: 50%;
+    }
+
     
   </style>
 
@@ -65,8 +69,8 @@ session_destroy();
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-4 d-none d-lg-block" style="margin-top: 10%;"><img src="img/logo.JPG" style="width:100%;"></div>
-               <div class="col-lg-8">
+              <div class="d-none d-lg-block" style="margin-top: 10%;margin-left: 30%!important;"><img src="img/logo.JPG" style="width:50%;"></div>
+               <div class="" style="margin-left: 20%!important;">
                 <div class="p-5">
                   <div class="text-center">
                     <img class="img-responsive" src="img/logo.JPG" style="width:100%;" >
@@ -92,7 +96,7 @@ session_destroy();
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="col-sm-10 mb-3 mb-sm-0">
       <input type="checkbox" id="age"/> I am at least 18 years old
     </div>
     <div class="mb-3 mb-sm-0" style="margin-left:.7rem;margin-bottom: .5rem!important;">
@@ -112,32 +116,41 @@ session_destroy();
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">First name</label>
       <input type="text" class="mr-2" id="fname" name="fname" placeholder="First Name">
+      <label for="exampleInputEmail1" class="text-dark">Last name</label>
       <input type="text" id="lname" name="lname" placeholder="Last Name">
     </div>
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">Email</label>
       <input type="email" class="mr-2" id="email" name="email" placeholder="Email Address">
       <span id="email_valid"></span>
-      <!-- <a href="#" id="validateemail">check avalability</a> -->
+      <label for="exampleInputEmail1" class="text-dark">DOB</label>
       <input type="date" id="dob" name="dob" placeholder="Date of Birth">
     </div>
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">Password</label>
       <input type="password" class="mr-2" id="password" name="password" placeholder="Password">
+      <label for="exampleInputEmail1" class="text-dark">Confirm password</label>
       <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Password">
     </div>
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">Mobile</label>
       <input type="number" class="mr-2" id="mobile" name="mobile" placeholder="Mobile">
     </div>
       
   </div>
   <div class="tab-pane fade" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
     <div class="mt-2">
-      
+      <label for="exampleInputEmail1" class="text-dark">Address1</label>
       <input type="text"  id="address1" name="address1" placeholder="address line 1" required>
+      <label for="exampleInputEmail1" class="text-dark">Address2</label>
       <input type="text" id="address2" name="address2" placeholder="address line 2">
     </div>
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">Postal code</label>
       <input type="number"  id="zipcode" name="zipcode" placeholder="Postal code" required>
+      <label for="exampleInputEmail1" class="text-dark">State</label>
       <select name="state" id="state">
                       <option value="">Select state</option>
                       <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -179,6 +192,7 @@ session_destroy();
                     </select>
     </div>
     <div class="mt-2">
+      <label for="exampleInputEmail1" class="text-dark">Country</label>
       <select name="country" id="country" style="width:200px;">
         <option value="India" selected="selected">India</option>
       </select>
@@ -190,7 +204,9 @@ session_destroy();
   </div>
   <div class="tab-pane fade" id="pills-neft" role="tabpanel" aria-labelledby="pills-neft-tab">
     <div class="">
+      <label for="exampleInputEmail1" class="text-dark">Account Number</label>
       <input type="number" id="account_number" name="account_number" placeholder="account number" required>
+      <label for="exampleInputEmail1" class="text-dark">IFSC</label>
       <input type="text" id="ifsc" name="ifsc" placeholder="ifsc code" required>
     </div>
      <div class="mt-5">
