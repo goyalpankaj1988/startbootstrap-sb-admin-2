@@ -94,6 +94,8 @@ include("sidebar.php");
                 <div class="form-group custom-file">
                   <input type="file" name="img" accept="image/*" class="custom-file-input" id="validatedCustomFile" value="" required>
                   <label class="custom-file-label" for="validatedCustomFile">Choose Product image...</label>
+                  <small id="validatedCustomFilelHelp" class="form-text text-muted"></small>
+                  
                   
                 </div>
                 
@@ -131,3 +133,9 @@ include("sidebar.php");
 
      <?php include("footer.php");?>
      <script src="js/application/add_product.js"></script>
+     <script >
+      $("#validatedCustomFile").change(function(){
+        $("#validatedCustomFilelHelp").text(this.files[0].name)
+      console.log(this.files[0].name)
+    })
+</script>

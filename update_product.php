@@ -7,6 +7,7 @@ include("sidebar.php");
 
 
 ?>
+
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <link rel="stylesheet"
@@ -106,8 +107,10 @@ include("sidebar.php");
                 
                 
                 <div class="form-group custom-file">
-                  <input type="file" name="img" accept="image/*" class="custom-file-input" id="validatedCustomFile" value="" >
+                  <input type="file" name="img" accept="image/*" class="custom-file-input" id="validatedCustomFile"  >
                   <label class="custom-file-label" for="validatedCustomFile">Choose Product image...</label>
+                  <small id="validatedCustomFilelHelp" class="form-text text-muted"></small>
+                  
                   <small id="emailHelp" class="form-text text-muted">If you want to chnage image of product in that case only uploda image else don't do anything with this field.</small>
                   
                 </div>
@@ -146,3 +149,9 @@ include("sidebar.php");
 
      <?php include("footer.php");?>
      <script src="js/application/add_product.js"></script>
+     <script >
+      $("#validatedCustomFile").change(function(){
+        $("#validatedCustomFilelHelp").text(this.files[0].name)
+      console.log(this.files[0].name)
+    })
+</script>
