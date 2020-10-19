@@ -100,7 +100,7 @@ include("sidebar.php");
                   <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="inactive" <?php echo ($_GET['status'] == "inactive" ? 'checked="checked"': ''); ?> required>
                   <label class="form-check-label" for="inlineRadio2">Product Inactive</label>
                 </div>
-                <small id="emailHelp" class="form-text text-muted">If you don't want show this product to user, you can Inactive this .</small>
+                <small id="emailHelp" class="form-text text-muted">If you don't want to show this product to user, you can Inactive this .</small>
                   
                 <br/>
                 
