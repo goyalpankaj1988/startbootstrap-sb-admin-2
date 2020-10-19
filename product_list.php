@@ -34,7 +34,7 @@ foreach($ProductList_Array as $key=>$value){
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Purchase for <?php echo $purchesar_name;?></h1>
+          <h1 class="h3 mb-2 text-gray-800">Product List</h1>
           <?php 
 
               if(isset($_SESSION['msg_success']))

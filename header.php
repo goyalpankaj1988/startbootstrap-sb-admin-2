@@ -32,8 +32,8 @@ if(!isset($_SESSION['menu']) || empty($_SESSION['menu']))
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>SB Admin 2 - Blank</title>
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+  <title>Femen Life</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

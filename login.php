@@ -22,8 +22,9 @@ session_destroy();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Admin - Login</title>
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+  
+  <title>Femen Life</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,10 +48,15 @@ session_destroy();
     }
     
   </style>
-
+<style>
+body {
+  background-image: url('h1_hero.png');
+  background-repeat: no-repeat;
+}
+</style>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" >
 
   <div class="container">
 
