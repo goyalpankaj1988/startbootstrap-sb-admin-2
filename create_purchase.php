@@ -6,7 +6,7 @@ include(__DIR__."/controller/product_list.php");
 $purchesar_id = $_GET['id'];
 $purchesar_name = $_GET['name'];
 
-
+// print_r($ProductList_Array);
 foreach($ProductList_Array as $key=>$value){
   $ProductList_Array[$key]['unit']=0;
   $ProductList_Array[$key]['amount']=0;

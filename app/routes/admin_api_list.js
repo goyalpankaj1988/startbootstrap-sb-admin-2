@@ -17,6 +17,11 @@ router.post('/add_product',
     product.add_product
 );
 
+router.post('/update_product',
+    [validate_client_token, role_validation],
+    product.update_product
+);
+
 
 router.post('/search_user',
     [validate_client_token, role_validation],

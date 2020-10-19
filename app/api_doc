@@ -127,6 +127,27 @@ responce code 423 or 424
     }
 }
 
+{
+    "role" : "user",
+    "status" : "Y",
+    "earned_amonut" : 0,
+    "paid_amonut" : 0,
+    "first_purches" : "Y",
+    "membar_count" : 0,
+    "user_name" : "sonu@1000000043.com",
+    "ref_id" : "5f7a09605aa813092b831e70",
+    "name" : "pankaj  goyal",
+    "address1" : "90",
+    "mobile" : "8989898989",
+    "zipcode" : "90",
+    "state" : "Karnataka",
+    "country" : "India",
+    "account_number" : "9090",
+    "ifsc" : "909",
+    "password" : "12345",
+    "__v" : 0
+    
+}
 
 Purches list
 URL : http://localhost:3000/admin_api_list/buy_product

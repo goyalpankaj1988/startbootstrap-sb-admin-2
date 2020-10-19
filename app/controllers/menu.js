@@ -5,7 +5,9 @@ exports.menu= async function(req, res) {
             data = {
                 "User list":"user_list.php",
                 "User add":"add_user.php",
-                "Purchase log":"all_purchase_log.php"
+                "Purchase log":"all_purchase_log.php",
+                "Add Product":"add_product.php",
+                "Product list":"product_list.php"
             }
         }
         else{
