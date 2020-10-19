@@ -51,6 +51,7 @@ foreach($ProductList_Array as $key=>$value){
                       <th>Quantity</th>
                       <th>MRP</th>
                       <th>DP</th>
+                      <th>Type</th>
                       <th>Unit</th>
                       <th>Amount</th>
                       
@@ -58,7 +59,7 @@ foreach($ProductList_Array as $key=>$value){
                   </thead>
                   <tfoot>
                     <tr>
-                      <th colspan="5" class="text-right">Total</th>
+                      <th colspan="6" class="text-right">Total</th>
                       <th id="total_qnt">0</th>
                       <th id="total_amt">0</th>
                     </tr>
@@ -85,13 +86,17 @@ foreach($ProductList_Array as $key=>$value){
                         // {
                         //   $img_url = 'img/product/'.$value['_id'].'/1.jpg';
                         // }
-                        echo "<tr class='tableDataG'><td>".$value['product_name']."</td>";
-                        echo '<td style="width: 10%;"><img class="product-image" style="width: 100%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
-                        echo "<td>".$value['quantity']."</td>";
-                        echo "<td>".$value['mrp']."</td>";
-                        echo "<td id='".$value['_id']."_dp'>".$value['dp']."</td>";
-                        echo '<td><span class="fa-2x text-success"><i class="far fa-plus-square  ml-1 fa-plus-square-td" data_id="'.$value['_id'].'" ></i></span><span class="ml-1 mr-1 fa-2x" id="'.$value['_id'].'_qnt">0</span><span class="fa-2x text-danger"><i class="far fa-minus-square  fa-minus-square-td" data_id="'.$value['_id'].'"></i></span></td>';
-                        echo '<td><span class="amount" id="'.$value['_id'].'_amt">0</span></td></tr>';
+                        if($value['status']!="inactive"){
+                          echo "<tr class='tableDataG'><td>".$value['product_name']."</td>";
+                          echo '<td style="width: 10%;"><img class="product-image" style="width: 100%;" src="'.$img_url.'" data-toggle="modal" data-target="#uproductImageModal"/></td>';
+                          echo "<td>".$value['quantity']."</td>";
+                          echo "<td>".$value['mrp']."</td>";
+                          echo "<td id='".$value['_id']."_dp'>".$value['dp']."</td>";
+                          echo "<td id='".$value['_id']."_type'>".$value['type']."</td>";
+                          echo '<td><span class="fa-2x text-success"><i class="far fa-plus-square  ml-1 fa-plus-square-td" data_id="'.$value['_id'].'" ></i></span><span class="ml-1 mr-1 fa-2x" id="'.$value['_id'].'_qnt">0</span><span class="fa-2x text-danger"><i class="far fa-minus-square  fa-minus-square-td" data_id="'.$value['_id'].'"></i></span></td>';
+                          echo '<td><span class="amount" id="'.$value['_id'].'_amt">0</span></td></tr>';
+                        }
+                        
                       }
                     ?>
                   </tbody>

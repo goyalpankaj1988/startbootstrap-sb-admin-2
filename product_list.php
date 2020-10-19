@@ -35,6 +35,25 @@ foreach($ProductList_Array as $key=>$value){
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Purchase for <?php echo $purchesar_name;?></h1>
+          <?php 
+
+              if(isset($_SESSION['msg_success']))
+              {
+                  echo '<div class="alert alert-success" role="alert">';
+                  echo $_SESSION['msg_success'];
+                  unset($_SESSION['msg_success']);
+                  echo '</div>';
+              }
+              if(isset($_SESSION['msg_error']))
+              {
+                  echo '<div class="alert alert-danger" role="alert">';
+                  echo $_SESSION['msg_error'];
+                  unset($_SESSION['msg_error']);
+                  echo '</div>';
+              }
+
+          ?>
+
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

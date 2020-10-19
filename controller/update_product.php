@@ -88,7 +88,7 @@ if(isset($_SESSION['user']['token']))
         
     }
     else{
-        $_SESSION['msg_success'] = 'Product added successfully.';
+        $_SESSION['msg_success'] = 'Product updated successfully.';
     }
     
     

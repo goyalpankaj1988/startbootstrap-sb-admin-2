@@ -100,13 +100,15 @@ include("sidebar.php");
                   <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="inactive" <?php echo ($_GET['status'] == "inactive" ? 'checked="checked"': ''); ?> required>
                   <label class="form-check-label" for="inlineRadio2">Product Inactive</label>
                 </div>
-                <br/>
+                <small id="emailHelp" class="form-text text-muted">If you don't want show this product to user, you can Inactive this .</small>
+                  
                 <br/>
                 
                 
                 <div class="form-group custom-file">
                   <input type="file" name="img" accept="image/*" class="custom-file-input" id="validatedCustomFile" value="" >
                   <label class="custom-file-label" for="validatedCustomFile">Choose Product image...</label>
+                  <small id="emailHelp" class="form-text text-muted">If you want to chnage image of product in that case only uploda image else don't do anything with this field.</small>
                   
                 </div>
                 

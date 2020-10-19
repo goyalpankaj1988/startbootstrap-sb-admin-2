@@ -100,6 +100,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                       <th>Product</th>
                       <th>Serial #</th>
                       <th>Description</th>
+                      <th>Type</th>
                       <th>Subtotal(INR)</th>
                     </tr>
                     </thead>
@@ -122,6 +123,7 @@ $purchaseDetails = $purchaseBillArr[0]['purcheser_id'];
                         }
 
                       ?></td>
+                      <td style="margin-left:5px;"><?php echo $value['type'].'  ';?></td>
                       <td style="margin-left:5px;"><?php echo $value['amount'].'  '; ?></td>
                     </tr>
                     <?php  }?>
