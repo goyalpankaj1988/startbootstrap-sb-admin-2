@@ -68,7 +68,7 @@ session_destroy();
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="d-none d-lg-block" style="margin-top: 10%;margin-left: 30%!important;"><img src="img/logo.JPG" style="width:50%;"></div>
+              <div class="d-none d-lg-block" style="margin-top: 10%;margin-left: 30%!important;"><a href="login.php"><img src="img/logo.JPG" style="width:50%;"></a></div>
                <div class="" style="margin-left: 20%!important;">
                 <div class="p-5">
                   <div class="text-center">
