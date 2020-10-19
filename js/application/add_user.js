@@ -170,9 +170,9 @@ function isvalidform()
 		$('#email_valid').html('');
 		$("#email").removeClass('border border-danger');
 		$.ajax({
-		        url:"controller/checkusername.php",
+		        url:"controller/validateuseremail.php",
 		        data: { 
-		        "user_name": email
+		        "user_email": email
 		   		},
 		        type: "POST",
 		        success:function(response) {

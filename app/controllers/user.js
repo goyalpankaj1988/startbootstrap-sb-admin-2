@@ -110,6 +110,129 @@ exports.search_user = async function(req, res) {
     }
 };
 
+exports.get_user = async function(req, res) {
+  
+    
+    // let user_id = new mongo.ObjectID(req.user_id);
+    
+    let refernce_name       =req.body.refernce_name  
+
+    data = {
+        "user_name":refernce_name
+
+    }
+    console.log(data);
+    getUser(refernce_name)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return;
+        }).catch(function(error){
+            res.status(messages.status.dbError).json({ errors: error });
+            return;
+        });
+    
+};
+exports.validate_email = async function(req, res) {
+  
+    
+    // let user_id = new mongo.ObjectID(req.user_id);
+    
+    let user_email       =req.body.user_email  
+
+    data = {
+        "user_email":user_email
+
+    }
+    checkEmail(user_email)
+        .then(function(values){
+            res.status(messages.status.OK).json(values);
+            return;
+        }).catch(function(error){
+            res.status(messages.status.dbError).json({ errors: error });
+            return;
+        });
+    
+};
+
+exports.registration = async function(req, res) {
+  
+   
+        
+        let user_name       =req.body.user_name       
+        let password        =req.body.password        
+        let name            =req.body.name            
+        let role            =req.body.role            
+        // let email_id        =req.body.email_id  
+        let ref_id          =req.body.ref_id 
+        let address1        =req.body.address1       
+        let address2        =req.body.address2        
+        let mobile          =req.body.mobile            
+        let zipcode         =req.body.zipcode            
+        let state           =req.body.state  
+        let country         =req.body.country 
+        let account_number  =req.body.account_number  
+        let ifsc            =req.body.ifsc
+
+        data = {
+            "user_name":user_name,
+            "name":name,
+            "role":role,
+            "email_id":user_name,
+            "ref_id":ref_id,
+            "address1":address1,
+            "address2":address2,
+            "mobile":mobile,
+            "zipcode":zipcode,
+            "state":state,
+            "country":country,
+            "account_number":account_number,
+            "ifsc":ifsc
+
+        }
+        check_user_ref(ref_id)
+        .then(function(values){
+            if(values!=null  && values.membar_count<4){
+                console.log(values)
+                let promises = [];
+                promises[0]=add_user_table(data,password)
+                Promise.all(promises).then(function(values){
+                    let added_user_id   =values[0];
+                    console.log(added_user_id)
+                    adde_user_ref(added_user_id,ref_id)
+                    .then(function(values){
+                        res.status(messages.status.OK).json({ "msg":added_user_id});
+                        return;
+                    }).catch(function(error){
+                        console.log('=========');
+                        console.log(error);
+                        res.status(messages.status.dbError).json({ errors: error });
+                        return;
+                    });
+                }).catch(function(error){
+                    console.log('>>>>>>');
+                    console.log(error);
+                    res.status(messages.status.dbError).json({ errors: error });
+                    return;
+            
+                });
+            }
+            else{
+                console.log(error)
+                res.status(messages.status.dbError).json({ errors: error });
+                return;
+            }
+            
+        })
+        .catch(function(error){
+            res.status(messages.status.dbError).json({ errors: error });
+            return;
+    
+        });
+        
+    
+};
+
+
 exports.get_usernetwork = async function(req, res) {
   
     if(req.role && req.name && req.user_id){
@@ -408,6 +531,45 @@ function search_userByName(keyword) {
         }
         });
     });
+}
+function getUser(keyword) { 
+    return new Promise(function(resolve, reject) {
+        user
+        .find({
+            "user_serial_number":keyword,
+            
+        })
+        .limit(4)
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+
+    
+}
+function checkEmail(keyword) { 
+    return new Promise(function(resolve, reject) {
+        user
+        .find({
+            "email_id":keyword,
+            
+        })
+        .exec(function (err,result) {
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+
+    
 }
 function getUserNetwork(id){
     return new Promise(function(resolve, reject) {
