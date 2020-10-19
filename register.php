@@ -364,11 +364,11 @@ session_destroy();
                data: form.serialize(), // serializes the form's elements.
                success: function(data)
                {
-                window.location.href ='login.php';            
+                    window.location.href ='login.php';
                    
                }
              });
-        // window.location.href ='login.php';
+        
       }
       // var form = $("#user");
       //   var url = "controller/userRegistration.php";

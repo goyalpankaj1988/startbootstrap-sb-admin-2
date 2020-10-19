@@ -192,7 +192,7 @@ exports.registration = async function(req, res) {
         check_user_ref(ref_id)
         .then(function(values){
             if(values!=null  && values.membar_count<4){
-                console.log(values)
+                // console.log(values)
                 let promises = [];
                 promises[0]=add_user_table(data,password)
                 Promise.all(promises).then(function(values){
@@ -203,14 +203,10 @@ exports.registration = async function(req, res) {
                         res.status(messages.status.OK).json({ "msg":added_user_id});
                         return;
                     }).catch(function(error){
-                        console.log('=========');
-                        console.log(error);
                         res.status(messages.status.dbError).json({ errors: error });
                         return;
                     });
                 }).catch(function(error){
-                    console.log('>>>>>>');
-                    console.log(error);
                     res.status(messages.status.dbError).json({ errors: error });
                     return;
             
@@ -537,9 +533,10 @@ function getUser(keyword) {
         user
         .find({
             "user_serial_number":keyword,
+            "status":"Y",
+            "membar_count":{$lt:4}
             
         })
-        .limit(4)
         .exec(function (err,result) {
             if(err){
                 reject(err)
