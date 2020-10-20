@@ -100,7 +100,7 @@ session_destroy();
       <input type="checkbox" id="age"/> I am at least 18 years old
     </div>
     <div class="mb-3 mb-sm-0" style="margin-left:.7rem;margin-bottom: .5rem!important;">
-      <input type="checkbox" id="terms"> I accept all <a href="#">terms and conditions</a> to become a consultant
+      <input type="checkbox" id="terms"> I accept all <a href="doc/termscondition.pdf" target="_blank">terms and conditions</a> to become a consultant
     </div>
     <div class="col-sm-6 mb-3 mb-sm-0">
       <!-- <label for="exampleInputEmail1" class="text-dark">Search by reference user name</label> -->
